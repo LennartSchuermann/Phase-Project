@@ -8,6 +8,7 @@ const kRightColor = Color(0xff0be881);
 const kHighlightColor = Color(0xff006EE6);
 
 const kBackgroundColor = Color(0xff101010);
+const kFontColor = Color(0xffFFFFFF);
 
 const kTitleSize = 32.0;
 const kHeaderSize = 24.0;

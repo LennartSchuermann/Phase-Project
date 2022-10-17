@@ -1,10 +1,9 @@
 // ignore_for_file: must_be_immutable
 
+import 'logic/date_handling.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:phase_project/design.dart';
-
-import 'classes/date_handling.dart';
 
 //Text Prefabs
 class TitleText extends StatelessWidget {

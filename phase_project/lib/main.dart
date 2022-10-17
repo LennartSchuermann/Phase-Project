@@ -3,6 +3,7 @@ import 'package:phase_project/design.dart';
 import 'package:phase_project/screens/home_screen.dart';
 
 import 'package:window_manager/window_manager.dart';
+import 'logic/file_handling.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -24,6 +25,8 @@ Future<void> main() async {
     await windowManager.show();
     await windowManager.focus();
   });
+
+  await createSaveFile();
 
   runApp(const MyApp());
 }

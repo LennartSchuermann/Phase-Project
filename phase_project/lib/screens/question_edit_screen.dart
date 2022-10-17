@@ -3,9 +3,9 @@
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:phase_project/classes/file_handling.dart';
 
 import '../design.dart';
+import '../logic/file_handling.dart';
 import '../prefabs.dart';
 
 class QuestionEditScreen extends StatefulWidget {
@@ -83,9 +83,6 @@ class _QuestionEditScreenState extends State<QuestionEditScreen> {
                 //Open single file:
                 final file = result.files.first;
                 final newFile = await saveFile(file);
-
-                print(file.path);
-                print(newFile.path);
               },
               child: Container(
                 height: 60,
@@ -106,8 +103,18 @@ class _QuestionEditScreenState extends State<QuestionEditScreen> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
+        onPressed: () async {
           //TODO Save data
+
+          await readSaveFile();
+
+          if (widget.edit) {
+            //only edit existing data
+          } else {
+            //save as new data
+
+          }
+
           /* Navigator.push(
             context,
             MaterialPageRoute(

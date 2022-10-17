@@ -10,8 +10,6 @@ Future<Directory> getDir(String path) async {
   final storage = await getApplicationDocumentsDirectory();
   final dir = Directory('${storage.path}\\$path');
 
-  print(path);
-
   if (!await dir.exists()) {
     await dir.create(recursive: true);
   }
@@ -30,13 +28,17 @@ Future<File> saveFile(PlatformFile file) async {
 //Safe data
 
 //Create
-Future<File> createSaveFile() async {
+Future<Directory> createSaveFile() async {
   final Directory dir = await getDir(dataPath);
 
-  //TODO add template json
-
   final saveFile = File('${dir.path}\\save.json');
-  return saveFile.create(recursive: true);
+  if (!await saveFile.exists()) {
+    await saveFile.create(recursive: true);
+  }
+
+  //TODO add template json??
+
+  return dir;
 }
 
 //Read
@@ -44,7 +46,8 @@ Future<File> readSaveFile() async {
   final Directory dir = await getDir(dataPath);
 
   final saveFile = File('${dir.path}\\save.json');
-  print(saveFile.readAsString());
+  print("Content:");
+  print(saveFile.readAsString().toString());
   return saveFile;
 }
 

@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomeScreen(), //TODO Load json data
+      home: const HomeScreen(), //TODO Load json data
       debugShowCheckedModeBanner: false,
     );
   }

@@ -1,5 +1,9 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:flutter/material.dart';
 import 'package:phase_project/design.dart';
+
+import 'classes/date_handling.dart';
 
 //Text Prefabs
 class TitleText extends StatelessWidget {
@@ -219,7 +223,7 @@ class QuestionCard extends StatelessWidget {
                 content: "Phase: $currentPhase/$phaseCount",
               ),
               DefaultText(
-                content: "Nächste Abfrage: $nextQueryDate",
+                content: "Nächste Abfrage: ${formatedDateTime(nextQueryDate)}",
               )
             ],
           ),

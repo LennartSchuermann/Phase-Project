@@ -1,5 +1,7 @@
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:phase_project/classes/file_handling.dart';
 
 import '../design.dart';
 import '../prefabs.dart';
@@ -65,10 +67,32 @@ class _QuestionEditScreenState extends State<QuestionEditScreen> {
             const SizedBox(
               height: kDefaultPadding,
             ),
-            TextInputField(
-              controller: phaseTextController,
-              textInputType: TextInputType.number,
-              hintTxt: "Anzahl Phasen",
+            GestureDetector(
+              onTap: () async {
+                final result = await FilePicker.platform.pickFiles();
+                if (result == null) return;
+
+                //Open single file:
+                final file = result.files.first;
+                final newFile = await saveFile(file);
+
+                print(file.path);
+                print(newFile.path);
+              },
+              child: Container(
+                height: 60,
+                width: 250,
+                decoration: BoxDecoration(
+                  border: Border.all(),
+                  color: kHighlightColor,
+                  borderRadius: const BorderRadius.all(
+                    Radius.circular(kDefaultPadding / 2),
+                  ),
+                ),
+                child: Center(
+                  child: HeaderText(content: "Füge Bild hinzu..."),
+                ),
+              ),
             ),
           ],
         ),

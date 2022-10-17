@@ -106,18 +106,26 @@ class StartButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 60,
-      width: 250,
-      decoration: BoxDecoration(
-        border: Border.all(),
-        color: kHighlightColor,
-        borderRadius: const BorderRadius.all(
-          Radius.circular(kDefaultPadding / 2),
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => goToScreen),
+        );
+      },
+      child: Container(
+        height: 60,
+        width: 250,
+        decoration: BoxDecoration(
+          border: Border.all(),
+          color: kHighlightColor,
+          borderRadius: const BorderRadius.all(
+            Radius.circular(kDefaultPadding / 2),
+          ),
         ),
-      ),
-      child: Center(
-        child: HeaderText(content: text),
+        child: Center(
+          child: HeaderText(content: text),
+        ),
       ),
     );
   }

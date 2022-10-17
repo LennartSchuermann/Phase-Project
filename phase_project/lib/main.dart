@@ -42,7 +42,6 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: const HomeScreen(), //TODO Load json data
-
       debugShowCheckedModeBanner: false,
     );
   }

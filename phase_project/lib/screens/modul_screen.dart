@@ -4,6 +4,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:phase_project/design.dart';
 import 'package:phase_project/prefabs.dart';
+import 'package:phase_project/screens/modul_edit_screen.dart';
+import 'package:phase_project/screens/question_edit_screen.dart';
 
 class ModulScreen extends StatefulWidget {
   const ModulScreen({super.key});
@@ -97,7 +99,7 @@ class _ModulScreenState extends State<ModulScreen> {
                                   right: kDefaultPadding / 4),
                               child: QuestionCard(
                                 question: "Frage",
-                                cardScreen: const ModulScreen(),
+                                cardScreen: const QuestionEditScreen(),
                                 currentPhase: 2,
                                 phaseCount: 5,
                                 nextQueryDate: DateTime.now(),
@@ -151,7 +153,7 @@ class _ModulScreenState extends State<ModulScreen> {
                               const EdgeInsets.only(right: kDefaultPadding / 4),
                           child: QuestionCard(
                             question: "Frage",
-                            cardScreen: const ModulScreen(),
+                            cardScreen: const QuestionEditScreen(),
                             currentPhase: 2,
                             phaseCount: 5,
                             nextQueryDate: DateTime.now(),
@@ -174,13 +176,11 @@ class _ModulScreenState extends State<ModulScreen> {
               child: FloatingActionButton(
                 heroTag: null,
                 onPressed: () {
-                  /* Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => AddDish(
-                        meal: widget.currentMeal,
-                      )),
-            ); */
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ModulEditScreen()),
+                  );
                 },
                 backgroundColor: kBackgroundColor,
                 foregroundColor: kFontColor,
@@ -209,9 +209,7 @@ class _ModulScreenState extends State<ModulScreen> {
                 /* Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => AddDish(
-                      meal: widget.currentMeal,
-                    )),
+                builder: (context) => WIDGET),
           ); */
               },
               backgroundColor: kBackgroundColor,

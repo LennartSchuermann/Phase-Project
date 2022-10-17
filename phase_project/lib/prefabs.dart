@@ -1,6 +1,7 @@
 // ignore_for_file: must_be_immutable
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:phase_project/design.dart';
 
 import 'classes/date_handling.dart';
@@ -228,6 +229,59 @@ class QuestionCard extends StatelessWidget {
             ],
           ),
         ),
+      ),
+    );
+  }
+}
+
+//Text Input
+class TextInputField extends StatelessWidget {
+  TextInputField({
+    required this.controller,
+    required this.textInputType,
+    required this.hintTxt,
+    Key? key,
+  }) : super(key: key);
+
+  TextEditingController controller;
+  TextInputType textInputType;
+  String hintTxt;
+
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      inputFormatters: textInputType == TextInputType.number
+          ? [FilteringTextInputFormatter.digitsOnly]
+          : null,
+      controller: controller,
+      keyboardType: textInputType,
+      textInputAction: TextInputAction.done,
+      decoration: InputDecoration(
+        hoverColor: kFontColor,
+        fillColor: kBackgroundColor,
+        focusColor: kHighlightColor,
+        enabledBorder: OutlineInputBorder(
+          borderSide: const BorderSide(
+            color: kFontColor,
+          ),
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10.0),
+        ),
+        hintText: hintTxt,
+        hintStyle: TextStyle(
+          color: kFontColor.withOpacity(0.75),
+          fontFamily: 'Inter',
+          fontSize: kTextSize,
+          fontWeight: FontWeight.w200,
+        ),
+      ),
+      style: const TextStyle(
+        color: kFontColor,
+        fontFamily: 'Inter',
+        fontSize: kTextSize,
+        fontWeight: FontWeight.w200,
       ),
     );
   }

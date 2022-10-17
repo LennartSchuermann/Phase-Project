@@ -82,7 +82,7 @@ class _QuestionEditScreenState extends State<QuestionEditScreen> {
 
                 //Open single file:
                 final file = result.files.first;
-                final newFile = await saveFile(file);
+                await saveFile(file);
               },
               child: Container(
                 height: 60,

@@ -5,7 +5,9 @@ import 'package:phase_project/design.dart';
 import '../prefabs.dart';
 
 class ModulEditScreen extends StatefulWidget {
-  const ModulEditScreen({super.key});
+  ModulEditScreen({required this.edit, super.key});
+
+  bool edit;
 
   @override
   State<ModulEditScreen> createState() => _ModulEditScreenState();
@@ -41,7 +43,9 @@ class _ModulEditScreenState extends State<ModulEditScreen> {
                   ),
                 ),
                 TitleText(
-                  content: "Bearbeiten | Modul Name",
+                  content: widget.edit
+                      ? "Bearbeiten | Modul Name"
+                      : "Erstellen | Modul Name",
                 )
               ],
             ),

@@ -99,7 +99,9 @@ class _ModulScreenState extends State<ModulScreen> {
                                   right: kDefaultPadding / 4),
                               child: QuestionCard(
                                 question: "Frage",
-                                cardScreen: const QuestionEditScreen(),
+                                cardScreen: QuestionEditScreen(
+                                  edit: true,
+                                ),
                                 currentPhase: 2,
                                 phaseCount: 5,
                                 nextQueryDate: DateTime.now(),
@@ -153,7 +155,9 @@ class _ModulScreenState extends State<ModulScreen> {
                               const EdgeInsets.only(right: kDefaultPadding / 4),
                           child: QuestionCard(
                             question: "Frage",
-                            cardScreen: const QuestionEditScreen(),
+                            cardScreen: QuestionEditScreen(
+                              edit: true,
+                            ),
                             currentPhase: 2,
                             phaseCount: 5,
                             nextQueryDate: DateTime.now(),
@@ -179,7 +183,10 @@ class _ModulScreenState extends State<ModulScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const ModulEditScreen()),
+                      builder: (context) => ModulEditScreen(
+                        edit: true,
+                      ),
+                    ),
                   );
                 },
                 backgroundColor: kBackgroundColor,
@@ -206,11 +213,13 @@ class _ModulScreenState extends State<ModulScreen> {
             child: FloatingActionButton(
               heroTag: null,
               onPressed: () {
-                /* Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => WIDGET),
-          ); */
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => QuestionEditScreen(
+                            edit: false,
+                          )),
+                );
               },
               backgroundColor: kBackgroundColor,
               foregroundColor: kFontColor,

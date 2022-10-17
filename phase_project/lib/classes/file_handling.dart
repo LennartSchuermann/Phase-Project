@@ -7,8 +7,8 @@ Future<File> saveFile(PlatformFile file) async {
   final storage = await getApplicationDocumentsDirectory();
   final dir = Directory('${storage.path}\\PhaseProject\\images');
 
-  if (!await dir.exists()) {
-    dir.create();
+  if (await dir.exists()) {
+    dir.create(recursive: true);
     print(dir.path);
   }
 

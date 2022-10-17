@@ -7,7 +7,9 @@ import '../design.dart';
 import '../prefabs.dart';
 
 class QuestionEditScreen extends StatefulWidget {
-  const QuestionEditScreen({super.key});
+  QuestionEditScreen({required this.edit, super.key});
+
+  bool edit;
 
   @override
   State<QuestionEditScreen> createState() => _QuestionEditScreenState();
@@ -44,7 +46,8 @@ class _QuestionEditScreenState extends State<QuestionEditScreen> {
                   ),
                 ),
                 TitleText(
-                  content: "Bearbeiten | Frage",
+                  content:
+                      widget.edit ? "Bearbeiten | Frage" : "Erstellen | Frage",
                 )
               ],
             ),
@@ -90,7 +93,7 @@ class _QuestionEditScreenState extends State<QuestionEditScreen> {
                   ),
                 ),
                 child: Center(
-                  child: HeaderText(content: "Füge Bild hinzu..."),
+                  child: HeaderText(content: "Bild hinzufügen..."),
                 ),
               ),
             ),

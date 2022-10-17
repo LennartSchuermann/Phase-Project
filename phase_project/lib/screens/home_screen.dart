@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:phase_project/design.dart';
 import 'package:phase_project/prefabs.dart';
+import 'package:phase_project/screens/modul_edit_screen.dart';
 import 'package:phase_project/screens/modul_screen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -140,11 +141,14 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          /* Navigator.push(
+          Navigator.push(
             context,
             MaterialPageRoute(
-                builder: (context) => WIDGET),
-          ); */
+              builder: (context) => ModulEditScreen(
+                edit: false,
+              ),
+            ),
+          );
         },
         backgroundColor: kBackgroundColor,
         foregroundColor: kFontColor,

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:phase_project/design.dart';
 import 'package:phase_project/prefabs.dart';
 import 'package:phase_project/screens/modul_edit_screen.dart';
+import 'package:phase_project/screens/query_screen.dart';
 import 'package:phase_project/screens/question_edit_screen.dart';
 
 class ModulScreen extends StatefulWidget {
@@ -56,7 +57,7 @@ class _ModulScreenState extends State<ModulScreen> {
               children: [
                 StartButton(
                   text: "Start",
-                  goToScreen: const ModulScreen(),
+                  goToScreen: const QueryScreen(),
                 ),
                 const SizedBox(
                   width: kDefaultPadding,

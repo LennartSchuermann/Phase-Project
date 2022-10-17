@@ -131,6 +131,31 @@ class StartButton extends StatelessWidget {
   }
 }
 
+class QueryActionButton extends StatelessWidget {
+  QueryActionButton({required this.text, required this.color, super.key});
+
+  String text;
+  Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 60,
+      width: 250,
+      decoration: BoxDecoration(
+        border: Border.all(),
+        color: color,
+        borderRadius: const BorderRadius.all(
+          Radius.circular(kDefaultPadding / 2),
+        ),
+      ),
+      child: Center(
+        child: HeaderText(content: text),
+      ),
+    );
+  }
+}
+
 //Card Prefabs
 class ModulCard extends StatelessWidget {
   ModulCard({

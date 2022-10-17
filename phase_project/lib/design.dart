@@ -3,7 +3,7 @@ import 'package:flutter/cupertino.dart';
 const String kAppName = "Phase Project";
 const String kVersion = "0.0.1";
 
-const kDeleteColor = Color(0xffE74C3C);
+const kFalseColor = Color(0xffE74C3C);
 const kRightColor = Color(0xff0be881);
 const kHighlightColor = Color(0xff006EE6);
 

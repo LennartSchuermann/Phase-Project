@@ -12,9 +12,10 @@ class Modul {
   });
 
   factory Modul.fromJson(Map<String, dynamic> json) {
+    var contentObjs = json['content'] as List;
+    List<Question> questions =
+        contentObjs.map((tagJson) => Question.fromJson(tagJson)).toList();
     return Modul(
-        name: json["name"],
-        content: Question.fromJson(json["content"]) as List<Question>,
-        phaseCnt: json["phase_cnt"]);
+        name: json["name"], content: questions, phaseCnt: json["phase_cnt"]);
   }
 }

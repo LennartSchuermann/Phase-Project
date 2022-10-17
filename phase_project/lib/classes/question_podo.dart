@@ -19,7 +19,7 @@ class Question {
       answer: json["answer"],
       imgPath: json["img_path"],
       phase: json["phase"],
-      nextQuery: json["date"],
+      nextQuery: DateTime.parse(json["date"]),
     );
   }
 

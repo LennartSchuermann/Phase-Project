@@ -106,7 +106,8 @@ class _QuestionEditScreenState extends State<QuestionEditScreen> {
         onPressed: () async {
           //TODO Save data
 
-          await readSaveFile();
+          var jsonData = await readSaveFile();
+          getModuls(jsonData);
 
           if (widget.edit) {
             //only edit existing data

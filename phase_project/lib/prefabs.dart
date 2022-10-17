@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:phase_project/design.dart';
 
@@ -75,6 +74,50 @@ class DescriptionText extends StatelessWidget {
   }
 }
 
+//Design Elements
+class SperationBar extends StatelessWidget {
+  const SperationBar({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding:
+          const EdgeInsets.only(top: kDefaultPadding, bottom: kDefaultPadding),
+      child: Container(
+        width: MediaQuery.of(context).size.width - (2 * kDefaultPadding),
+        height: 1,
+        color: kFontColor,
+      ),
+    );
+  }
+}
+
+//Buttons
+class StartButton extends StatelessWidget {
+  StartButton({required this.text, required this.goToScreen, super.key});
+
+  String text;
+  Widget goToScreen;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 60,
+      width: 250,
+      decoration: BoxDecoration(
+        border: Border.all(),
+        color: kHighlightColor,
+        borderRadius: const BorderRadius.all(
+          Radius.circular(kDefaultPadding / 2),
+        ),
+      ),
+      child: Center(
+        child: HeaderText(content: text),
+      ),
+    );
+  }
+}
+
 //Card Prefabs
 class ModulCard extends StatelessWidget {
   ModulCard({
@@ -121,6 +164,62 @@ class ModulCard extends StatelessWidget {
               ),
               DefaultText(
                 content: "Phasen: $phaseCount",
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class QuestionCard extends StatelessWidget {
+  QuestionCard({
+    required this.question,
+    required this.cardScreen,
+    required this.phaseCount,
+    required this.currentPhase,
+    required this.nextQueryDate,
+    super.key,
+  });
+
+  Widget cardScreen;
+  String question;
+  int currentPhase, phaseCount;
+  DateTime nextQueryDate;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: (() {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => cardScreen),
+        );
+      }),
+      child: Container(
+        height: 190,
+        width: 310,
+        decoration: BoxDecoration(
+            border: Border.all(
+              color: kFontColor,
+            ),
+            borderRadius:
+                const BorderRadius.all(Radius.circular(kDefaultPadding / 2))),
+        child: Padding(
+          padding: const EdgeInsets.all(kDefaultPadding / 2),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              HeaderText(
+                content: question,
+              ),
+              DefaultText(
+                content: "Phase: $currentPhase/$phaseCount",
+              ),
+              DefaultText(
+                content: "Nächste Abfrage: $nextQueryDate",
               )
             ],
           ),

@@ -84,9 +84,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
               ),
             ),
-            const SizedBox(
-              height: kDefaultPadding,
-            ),
+            const SperationBar(),
             HeaderText(content: "Alle Fächer:"),
             const SizedBox(
               height: kDefaultPadding / 2,

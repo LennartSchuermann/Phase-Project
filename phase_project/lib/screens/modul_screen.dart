@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:phase_project/design.dart';
@@ -17,24 +19,91 @@ class _ModulScreenState extends State<ModulScreen> {
       backgroundColor: kBackgroundColor,
       body: Padding(
         padding: const EdgeInsets.all(kDefaultPadding),
-        child: Row(children: [
-          IconButton(
-            onPressed: () {
-              Navigator.pop(
-                context,
-              );
-            },
-            iconSize: kHeaderSize,
-            enableFeedback: false,
-            icon: const Icon(
-              CupertinoIcons.chevron_back,
-              color: kFontColor,
+        child: Column(
+          children: [
+            Row(
+              children: [
+                IconButton(
+                  onPressed: () {
+                    Navigator.pop(
+                      context,
+                    );
+                  },
+                  iconSize: kHeaderSize,
+                  enableFeedback: false,
+                  icon: const Icon(
+                    CupertinoIcons.chevron_back,
+                    color: kFontColor,
+                  ),
+                ),
+                TitleText(
+                  content: "Modul Name",
+                )
+              ],
             ),
-          ),
-          TitleText(
-            content: "Modul Name",
-          )
-        ]),
+            const SizedBox(
+              height: kDefaultPadding,
+            ),
+            Row(
+              children: [
+                StartButton(text: "Start", goToScreen: ModulScreen()),
+                const SizedBox(
+                  width: kDefaultPadding,
+                ),
+                SizedBox(
+                  width: MediaQuery.of(context).size.width -
+                      (kDefaultPadding * 2) -
+                      (250 + kDefaultPadding),
+                  height: 220,
+                  child: ScrollConfiguration(
+                    behavior: ScrollConfiguration.of(context).copyWith(
+                      dragDevices: {
+                        PointerDeviceKind.touch,
+                        PointerDeviceKind.mouse,
+                      },
+                    ),
+                    child: ShaderMask(
+                      shaderCallback: (Rect rect) {
+                        return const LinearGradient(
+                          begin: Alignment.centerLeft,
+                          end: Alignment.centerRight,
+                          colors: [
+                            Colors.transparent,
+                            kBackgroundColor,
+                          ],
+                          stops: [
+                            0.9,
+                            1.0
+                          ], // 10% purple, 80% transparent, 10% purple
+                        ).createShader(rect);
+                      },
+                      blendMode: BlendMode.dstOut,
+                      child: ListView(
+                        physics: const AlwaysScrollableScrollPhysics(),
+                        scrollDirection: Axis.horizontal,
+                        children: [
+                          for (int i = 0; i < 5; i++)
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  right: kDefaultPadding / 4),
+                              child: QuestionCard(
+                                question: "Frage",
+                                cardScreen: ModulScreen(),
+                                currentPhase: 2,
+                                phaseCount: 5,
+                                nextQueryDate: DateTime.now(),
+                              ),
+                            ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+            const SperationBar(),
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {

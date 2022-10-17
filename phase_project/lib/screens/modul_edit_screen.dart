@@ -44,10 +44,12 @@ class _ModulEditScreenState extends State<ModulEditScreen> {
                     color: kFontColor,
                   ),
                 ),
-                TitleText(
-                  content: widget.edit
-                      ? "Bearbeiten | Modul Name"
-                      : "Erstellen | Modul Name",
+                Flexible(
+                  child: TitleText(
+                    content: widget.edit
+                        ? "Bearbeiten | Modul Name"
+                        : "Erstellen | Modul Name",
+                  ),
                 )
               ],
             ),

@@ -24,22 +24,32 @@ class _QueryScreenState extends State<QueryScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                IconButton(
-                  onPressed: () {
-                    Navigator.pop(
-                      context,
-                    );
-                  },
-                  iconSize: kHeaderSize,
-                  enableFeedback: false,
-                  icon: const Icon(
-                    CupertinoIcons.chevron_back,
-                    color: kFontColor,
-                  ),
+                Row(
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        Navigator.pop(
+                          context,
+                        );
+                      },
+                      iconSize: kHeaderSize,
+                      enableFeedback: false,
+                      icon: const Icon(
+                        CupertinoIcons.chevron_back,
+                        color: kFontColor,
+                      ),
+                    ),
+                    Flexible(
+                      child: TitleText(
+                        content: "Abfrage | Modul Name",
+                      ),
+                    ),
+                  ],
                 ),
                 TitleText(
-                  content: "Abfrage | Modul Name",
+                  content: "x / y",
                 ),
               ],
             ),

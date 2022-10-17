@@ -27,8 +27,10 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             Row(
               children: [
-                TitleText(
-                  content: "Phase Project",
+                Flexible(
+                  child: TitleText(
+                    content: "Phase Project",
+                  ),
                 ),
               ],
             ),

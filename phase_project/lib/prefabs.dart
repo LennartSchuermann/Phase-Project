@@ -16,6 +16,7 @@ class TitleText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       content,
+      overflow: TextOverflow.ellipsis,
       style: const TextStyle(
           color: kFontColor,
           fontFamily: "Inter",
@@ -34,6 +35,7 @@ class HeaderText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       content,
+      overflow: TextOverflow.ellipsis,
       style: const TextStyle(
           color: kFontColor,
           fontFamily: "Inter",
@@ -52,6 +54,7 @@ class DefaultText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       content,
+      overflow: TextOverflow.ellipsis,
       style: const TextStyle(
           color: kFontColor,
           fontFamily: "Inter",
@@ -70,6 +73,7 @@ class DescriptionText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       content,
+      overflow: TextOverflow.ellipsis,
       style: const TextStyle(
           color: kFontColor,
           fontFamily: "Inter",

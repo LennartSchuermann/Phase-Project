@@ -41,9 +41,11 @@ class _ModulScreenState extends State<ModulScreen> {
                     color: kFontColor,
                   ),
                 ),
-                TitleText(
-                  content: "Modul Name",
-                )
+                Flexible(
+                  child: TitleText(
+                    content: "Modul Name",
+                  ),
+                ),
               ],
             ),
             const SizedBox(

@@ -47,9 +47,12 @@ class _QuestionEditScreenState extends State<QuestionEditScreen> {
                     color: kFontColor,
                   ),
                 ),
-                TitleText(
-                  content:
-                      widget.edit ? "Bearbeiten | Frage" : "Erstellen | Frage",
+                Flexible(
+                  child: TitleText(
+                    content: widget.edit
+                        ? "Bearbeiten | Frage"
+                        : "Erstellen | Frage",
+                  ),
                 )
               ],
             ),

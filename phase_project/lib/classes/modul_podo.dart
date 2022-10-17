@@ -15,6 +15,7 @@ class Modul {
     var contentObjs = json['content'] as List;
     List<Question> questions =
         contentObjs.map((tagJson) => Question.fromJson(tagJson)).toList();
+
     return Modul(
         name: json["name"], content: questions, phaseCnt: json["phase_cnt"]);
   }

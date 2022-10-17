@@ -26,12 +26,14 @@ class _HomeScreenState extends State<HomeScreen> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Flexible(
                   child: TitleText(
                     content: "Phase Project",
                   ),
                 ),
+                DescriptionText(content: "Design Preview Build | Lennart S. ©")
               ],
             ),
             const SizedBox(
@@ -154,20 +156,22 @@ class _HomeScreenState extends State<HomeScreen> {
         },
         backgroundColor: kBackgroundColor,
         foregroundColor: kFontColor,
-        child: Stack(children: [
-          const Center(child: Icon(CupertinoIcons.add, size: 30.0)),
-          Container(
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: kFontColor,
-                width: 1.1,
+        child: Stack(
+          children: [
+            const Center(child: Icon(CupertinoIcons.add, size: 30.0)),
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: kFontColor,
+                  width: 1.1,
+                ),
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(100),
+                ),
               ),
-              borderRadius: const BorderRadius.all(
-                Radius.circular(100),
-              ),
-            ),
-          )
-        ]),
+            )
+          ],
+        ),
       ),
     );
   }

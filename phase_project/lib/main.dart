@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:phase_project/design.dart';
 import 'package:phase_project/screens/home_screen.dart';
+
 import 'package:window_manager/window_manager.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  // Must add this line.
+
   await windowManager.ensureInitialized();
 
   WindowOptions windowOptions = const WindowOptions(
       size: Size(1280, 832),
       center: true,
-      backgroundColor: Colors.transparent,
+      backgroundColor: kBackgroundColor,
       skipTaskbar: false,
       title: kAppName
       //titleBarStyle: TitleBarStyle.hidden,
@@ -19,6 +20,7 @@ Future<void> main() async {
   windowManager.waitUntilReadyToShow(windowOptions, () async {
     //await windowManager.setMaximizable(true);
     await windowManager.setResizable(false);
+    //await windowManager.setBackgroundColor(kFontColor);
     await windowManager.show();
     await windowManager.focus();
   });
@@ -37,6 +39,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
       ),
       home: const HomeScreen(), //TODO Load json data
+
       debugShowCheckedModeBanner: false,
     );
   }

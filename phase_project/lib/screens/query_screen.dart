@@ -69,7 +69,7 @@ class _QueryScreenState extends State<QueryScreen> {
                     height: kDefaultPadding,
                   ),
                   Container(
-                    height: 400,
+                    height: 350,
                     width: 900,
                     color: kHighlightColor,
                     child: Center(child: DefaultText(content: "bild")),
@@ -82,6 +82,10 @@ class _QueryScreenState extends State<QueryScreen> {
                       : DefaultText(content: ""),
                   const SizedBox(
                     height: kDefaultPadding,
+                  ),
+                  DefaultText(content: "Phase: 2/5"),
+                  const SizedBox(
+                    height: kDefaultPadding / 2,
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,

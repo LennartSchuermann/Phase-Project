@@ -55,7 +55,7 @@ class _QuestionEditScreenState extends State<QuestionEditScreen> {
                   child: TitleText(
                     content: widget.edit
                         ? "Bearbeiten | ${widget.question.question}"
-                        : "Erstellen | ${widget.question.question}",
+                        : "Erstellen | Neue Frage",
                   ),
                 )
               ],

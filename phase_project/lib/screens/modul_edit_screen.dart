@@ -50,7 +50,7 @@ class _ModulEditScreenState extends State<ModulEditScreen> {
                   child: TitleText(
                     content: widget.edit
                         ? "Bearbeiten | ${widget.modul.name}"
-                        : "Erstellen | ${widget.modul.name}",
+                        : "Erstellen | Neues Fach",
                   ),
                 )
               ],

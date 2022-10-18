@@ -1,0 +1,48 @@
+[
+    {
+        "name": "Lineare Algebra 514",
+        "phase_cnt": 8,
+        "content":[
+            {
+                "question": "Bin ich wirklich so dumm, oder ist das KIT schuld?",
+                "answer": "Ja.",
+                "phase": 1,
+                "date": "2012-04-23T18:25:43.511Z",
+                "img_path": ""
+            },
+            {
+                "question": "Was mach ich hier?",
+                "answer": "",
+                "date": "2012-04-23T18:25:43.511Z",
+                "phase": 5,
+                "img_path": ""
+            }
+        ]
+    },
+    {
+        "name": "Höhere Mathematik i",
+        "phase_cnt": 4,
+        "content":[
+            {
+                "question": "Findest du das etwa lustig?",
+                "answer": "Nein eig. nicht",
+                "phase": 4,
+                "date": "2005-04-23T18:25:43.511Z",
+                "img_path": "C:/Users/schue/Documents/PhaseProject/images/ayo.gif"
+            }
+        ]
+    },
+    {
+        "name": "Lineare Algebra 515",
+        "phase_cnt": 4,
+        "content":[
+            {
+                "question": "Was soll das?",
+                "answer": ":(",
+                "phase": 3,
+                "date": "2025-04-23T18:25:43.511Z",
+                "img_path": "C:/Users/schue/Documents/PhaseProject/images/ayo.gif"
+            }
+        ]
+    }
+]

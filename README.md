@@ -4,7 +4,7 @@ Author: Lennart S.
 
 ## Pictures
 > first prototype design
-![Alt text](images/Github Preview.png?raw=false "Preview")
+![Alt text](images/Github_Preview.png?raw=false "Preview")
 
 ![Alt text](images/App_Main.png?raw=false "Main Screen")
 ![Alt text](images/Fach_Main.png?raw=false "Modul Screen")

@@ -6,6 +6,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:phase_project/classes/question_podo.dart';
 import 'package:phase_project/design.dart';
+import 'package:phase_project/logic/query_handling.dart';
 import 'package:phase_project/prefabs.dart';
 import 'package:phase_project/screens/modul_edit_screen.dart';
 import 'package:phase_project/screens/query_screen.dart';
@@ -26,6 +27,7 @@ class _ModulScreenState extends State<ModulScreen> {
   @override
   Widget build(BuildContext context) {
     Modul cModul = widget.currentModul;
+    List<Question> questionsToQuery = getQuestionsToQuery(cModul);
     return Scaffold(
       backgroundColor: kBackgroundColor,
       body: Padding(
@@ -60,77 +62,84 @@ class _ModulScreenState extends State<ModulScreen> {
             const SizedBox(
               height: kDefaultPadding,
             ),
-            HeaderText(content: "Heute fällig:"),
-            const SizedBox(
-              height: kDefaultPadding / 2,
+            questionsToQuery.isNotEmpty
+                ? HeaderText(content: "Heute fällig:")
+                : const SizedBox(),
+            SizedBox(
+              height: questionsToQuery.isNotEmpty ? kDefaultPadding / 2 : 0,
             ),
             //Today & Start
-            Row(
-              children: [
-                StartButton(
-                  text: "Start",
-                  goToScreen: QueryScreen(
-                    modul: widget.currentModul,
-                  ),
-                ),
-                const SizedBox(
-                  width: kDefaultPadding,
-                ),
-                SizedBox(
-                  width: MediaQuery.of(context).size.width -
-                      (kDefaultPadding * 2) -
-                      (250 + kDefaultPadding),
-                  height: 220,
-                  child: ScrollConfiguration(
-                    behavior: ScrollConfiguration.of(context).copyWith(
-                      dragDevices: {
-                        PointerDeviceKind.touch,
-                        PointerDeviceKind.mouse,
-                      },
-                    ),
-                    child: ShaderMask(
-                      shaderCallback: (Rect rect) {
-                        return const LinearGradient(
-                          begin: Alignment.centerLeft,
-                          end: Alignment.centerRight,
-                          colors: [
-                            Colors.transparent,
-                            kBackgroundColor,
-                          ],
-                          stops: [
-                            0.9,
-                            1.0
-                          ], // 10% purple, 80% transparent, 10% purple
-                        ).createShader(rect);
-                      },
-                      blendMode: BlendMode.dstOut,
-                      child: ListView(
-                        physics: const AlwaysScrollableScrollPhysics(),
-                        scrollDirection: Axis.horizontal,
-                        children: [
-                          for (int i = 0; i < cModul.content.length; i++)
-                            Padding(
-                              padding: const EdgeInsets.only(
-                                  right: kDefaultPadding / 4),
-                              child: QuestionCard(
-                                question: cModul.content[i].question,
-                                cardScreen: QuestionEditScreen(
-                                  question: cModul.content[i],
-                                  edit: true,
-                                ),
-                                currentPhase: cModul.content[i].phase,
-                                phaseCount: cModul.phaseCnt,
-                                nextQueryDate: cModul.content[i].nextQuery,
-                              ),
-                            ),
-                        ],
+            questionsToQuery.isNotEmpty
+                ? Row(
+                    children: [
+                      StartButton(
+                        text: "Start",
+                        goToScreen: QueryScreen(
+                          modul: widget.currentModul,
+                        ),
                       ),
-                    ),
-                  ),
-                ),
-              ],
-            ),
-            const SperationBar(),
+                      const SizedBox(
+                        width: kDefaultPadding,
+                      ),
+                      SizedBox(
+                        width: MediaQuery.of(context).size.width -
+                            (kDefaultPadding * 2) -
+                            (250 + kDefaultPadding),
+                        height: 220,
+                        child: ScrollConfiguration(
+                          behavior: ScrollConfiguration.of(context).copyWith(
+                            dragDevices: {
+                              PointerDeviceKind.touch,
+                              PointerDeviceKind.mouse,
+                            },
+                          ),
+                          child: ShaderMask(
+                            shaderCallback: (Rect rect) {
+                              return const LinearGradient(
+                                begin: Alignment.centerLeft,
+                                end: Alignment.centerRight,
+                                colors: [
+                                  Colors.transparent,
+                                  kBackgroundColor,
+                                ],
+                                stops: [
+                                  0.9,
+                                  1.0
+                                ], // 10% purple, 80% transparent, 10% purple
+                              ).createShader(rect);
+                            },
+                            blendMode: BlendMode.dstOut,
+                            child: ListView(
+                              physics: const AlwaysScrollableScrollPhysics(),
+                              scrollDirection: Axis.horizontal,
+                              children: [
+                                for (int i = 0; i < cModul.content.length; i++)
+                                  Padding(
+                                    padding: const EdgeInsets.only(
+                                        right: kDefaultPadding / 4),
+                                    child: QuestionCard(
+                                      question: cModul.content[i].question,
+                                      cardScreen: QuestionEditScreen(
+                                        question: cModul.content[i],
+                                        edit: true,
+                                      ),
+                                      currentPhase: cModul.content[i].phase,
+                                      phaseCount: cModul.phaseCnt,
+                                      nextQueryDate:
+                                          cModul.content[i].nextQuery,
+                                    ),
+                                  ),
+                              ],
+                            ),
+                          ),
+                        ),
+                      ),
+                    ],
+                  )
+                : const SizedBox(),
+            questionsToQuery.isNotEmpty
+                ? const SperationBar()
+                : const SizedBox(),
             HeaderText(content: "Alle Fragen:"),
             const SizedBox(
               height: kDefaultPadding / 2,

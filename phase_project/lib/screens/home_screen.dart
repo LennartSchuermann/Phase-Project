@@ -44,7 +44,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             content: kAppName,
                           ),
                         ),
-                        DescriptionText(content: kAppCaption)
+                        DescriptionText(content: "$kAppVersion | $kAppCaption")
                       ],
                     ),
                     const SizedBox(

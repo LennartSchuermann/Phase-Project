@@ -13,6 +13,8 @@ class QueryScreen extends StatefulWidget {
 }
 
 class _QueryScreenState extends State<QueryScreen> {
+  bool showAnswer = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,27 +28,29 @@ class _QueryScreenState extends State<QueryScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Row(
-                  children: [
-                    IconButton(
-                      onPressed: () {
-                        Navigator.pop(
-                          context,
-                        );
-                      },
-                      iconSize: kHeaderSize,
-                      enableFeedback: false,
-                      icon: const Icon(
-                        CupertinoIcons.chevron_back,
-                        color: kFontColor,
+                Expanded(
+                  child: Row(
+                    children: [
+                      IconButton(
+                        onPressed: () {
+                          Navigator.pop(
+                            context,
+                          );
+                        },
+                        iconSize: kHeaderSize,
+                        enableFeedback: false,
+                        icon: const Icon(
+                          CupertinoIcons.chevron_back,
+                          color: kFontColor,
+                        ),
                       ),
-                    ),
-                    Flexible(
-                      child: TitleText(
-                        content: "Abfrage | Modul Name",
+                      Flexible(
+                        child: TitleText(
+                          content: "Abfrage | Modul Name",
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
                 TitleText(
                   content: "x / y",
@@ -65,11 +69,17 @@ class _QueryScreenState extends State<QueryScreen> {
                     height: kDefaultPadding,
                   ),
                   Container(
-                    height: 450,
+                    height: 400,
                     width: 900,
                     color: kHighlightColor,
                     child: Center(child: DefaultText(content: "bild")),
                   ),
+                  const SizedBox(
+                    height: kDefaultPadding,
+                  ),
+                  showAnswer
+                      ? DefaultText(content: "Lösung")
+                      : DefaultText(content: ""),
                   const SizedBox(
                     height: kDefaultPadding,
                   ),
@@ -80,6 +90,18 @@ class _QueryScreenState extends State<QueryScreen> {
                       QueryActionButton(
                         text: "Falsch",
                         color: kFalseColor,
+                      ),
+                      //Answer Btn
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            showAnswer ? showAnswer = false : showAnswer = true;
+                          });
+                        },
+                        child: QueryActionButton(
+                          text: "Lösung",
+                          color: kHighlightColor,
+                        ),
                       ),
                       QueryActionButton(
                         text: "Richtig",

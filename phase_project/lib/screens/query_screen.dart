@@ -1,5 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:phase_project/classes/modul_podo.dart';
+import 'package:phase_project/screens/home_screen.dart';
 import 'package:phase_project/screens/question_edit_screen.dart';
 
 import '../classes/question_podo.dart';
@@ -7,7 +11,9 @@ import '../design.dart';
 import '../prefabs.dart';
 
 class QueryScreen extends StatefulWidget {
-  const QueryScreen({super.key});
+  QueryScreen({required this.modul, super.key});
+
+  Modul modul;
 
   @override
   State<QueryScreen> createState() => _QueryScreenState();
@@ -15,11 +21,19 @@ class QueryScreen extends StatefulWidget {
 
 class _QueryScreenState extends State<QueryScreen> {
   bool showAnswer = false;
+  int currentQuestionIndex = 0;
 
-  List<Question> questions = [];
+  void nextQuestion(int questionAmount) {
+    if (currentQuestionIndex + 1 >= questionAmount) {
+      currentQuestionIndex = 0;
+    } else {
+      currentQuestionIndex++;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    List<Question> questions = widget.modul.content;
     return Scaffold(
       backgroundColor: kBackgroundColor,
       body: Padding(
@@ -28,6 +42,7 @@ class _QueryScreenState extends State<QueryScreen> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            //Title
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -49,44 +64,52 @@ class _QueryScreenState extends State<QueryScreen> {
                       ),
                       Flexible(
                         child: TitleText(
-                          content: "Abfrage | Modul Name",
+                          content: "Abfrage | ${widget.modul.name}",
                         ),
                       ),
                     ],
                   ),
                 ),
                 TitleText(
-                  content: "x / y",
+                  content: "${currentQuestionIndex + 1} / ${questions.length}",
                 ),
               ],
             ),
             const SizedBox(
               height: kDefaultPadding,
             ),
+            //Body
             SizedBox(
               width: MediaQuery.of(context).size.width - (2 * kDefaultPadding),
               child: Column(
                 children: [
-                  HeaderText(content: "FRAGE"),
+                  HeaderText(content: questions[currentQuestionIndex].question),
                   const SizedBox(
                     height: kDefaultPadding,
                   ),
-                  Container(
-                    height: 350,
-                    width: 900,
-                    color: kHighlightColor,
-                    child: Center(child: DefaultText(content: "bild")),
-                  ),
+                  questions[currentQuestionIndex].imgPath != ""
+                      ? Container(
+                          height: 350,
+                          width: 900,
+                          color: kHighlightColor,
+                          child: Image.file(
+                              fit: BoxFit.cover,
+                              File(questions[currentQuestionIndex].imgPath)),
+                        )
+                      : const SizedBox(),
                   const SizedBox(
                     height: kDefaultPadding,
                   ),
                   showAnswer
-                      ? DefaultText(content: "Lösung")
+                      ? DefaultText(
+                          content: questions[currentQuestionIndex].answer)
                       : DefaultText(content: ""),
                   const SizedBox(
                     height: kDefaultPadding,
                   ),
-                  DefaultText(content: "Phase: 2/5"),
+                  DefaultText(
+                      content:
+                          "Phase: ${questions[currentQuestionIndex].phase}/${widget.modul.phaseCnt}"),
                   const SizedBox(
                     height: kDefaultPadding / 2,
                   ),
@@ -94,9 +117,16 @@ class _QueryScreenState extends State<QueryScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      QueryActionButton(
-                        text: "Falsch",
-                        color: kFalseColor,
+                      GestureDetector(
+                        onTap: () {
+                          setState(() {
+                            nextQuestion(questions.length);
+                          });
+                        },
+                        child: QueryActionButton(
+                          text: "Falsch",
+                          color: kFalseColor,
+                        ),
                       ),
                       //Answer Btn
                       GestureDetector(
@@ -107,12 +137,32 @@ class _QueryScreenState extends State<QueryScreen> {
                         },
                         child: QueryActionButton(
                           text: "Lösung",
-                          color: kHighlightColor,
+                          color: questions[currentQuestionIndex].answer == ""
+                              ? kBackgroundColor
+                              : kHighlightColor,
                         ),
                       ),
-                      QueryActionButton(
-                        text: "Richtig",
-                        color: kRightColor,
+                      GestureDetector(
+                        onTap: () {
+                          questions.remove(questions[currentQuestionIndex]);
+                          //TODO increase phase & set date
+
+                          if (questions.isEmpty) {
+                            //query is done
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const HomeScreen()),
+                            );
+                          } else {
+                            nextQuestion(questions.length);
+                            setState(() {});
+                          }
+                        },
+                        child: QueryActionButton(
+                          text: "Richtig",
+                          color: kRightColor,
+                        ),
                       ),
                     ],
                   ),

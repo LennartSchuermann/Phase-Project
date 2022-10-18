@@ -69,7 +69,9 @@ class _ModulScreenState extends State<ModulScreen> {
               children: [
                 StartButton(
                   text: "Start",
-                  goToScreen: const QueryScreen(),
+                  goToScreen: QueryScreen(
+                    modul: widget.currentModul,
+                  ),
                 ),
                 const SizedBox(
                   width: kDefaultPadding,

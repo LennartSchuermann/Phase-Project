@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:phase_project/screens/question_edit_screen.dart';
 
+import '../classes/question_podo.dart';
 import '../design.dart';
 import '../prefabs.dart';
 
@@ -14,6 +15,8 @@ class QueryScreen extends StatefulWidget {
 
 class _QueryScreenState extends State<QueryScreen> {
   bool showAnswer = false;
+
+  List<Question> questions = [];
 
   @override
   Widget build(BuildContext context) {
@@ -125,6 +128,7 @@ class _QueryScreenState extends State<QueryScreen> {
             context,
             MaterialPageRoute(
               builder: (context) => QuestionEditScreen(
+                question: questions[0],
                 edit: true,
               ),
             ),

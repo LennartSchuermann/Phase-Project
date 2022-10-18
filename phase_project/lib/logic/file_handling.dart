@@ -61,7 +61,7 @@ List<Modul> getModuls(var jsonData) {
   List<Modul> modulList =
       rest.map<Modul>((json) => Modul.fromJson(json)).toList();
 
-  printContent(modulList);
+  //printContent(modulList);
 
   return modulList;
 }

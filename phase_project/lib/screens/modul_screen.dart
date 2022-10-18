@@ -1,15 +1,22 @@
+// ignore_for_file: must_be_immutable
+
 import 'dart:ui';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:phase_project/classes/question_podo.dart';
 import 'package:phase_project/design.dart';
 import 'package:phase_project/prefabs.dart';
 import 'package:phase_project/screens/modul_edit_screen.dart';
 import 'package:phase_project/screens/query_screen.dart';
 import 'package:phase_project/screens/question_edit_screen.dart';
 
+import '../classes/modul_podo.dart';
+
 class ModulScreen extends StatefulWidget {
-  const ModulScreen({super.key});
+  ModulScreen({required this.currentModul, super.key});
+
+  Modul currentModul;
 
   @override
   State<ModulScreen> createState() => _ModulScreenState();
@@ -18,6 +25,7 @@ class ModulScreen extends StatefulWidget {
 class _ModulScreenState extends State<ModulScreen> {
   @override
   Widget build(BuildContext context) {
+    Modul cModul = widget.currentModul;
     return Scaffold(
       backgroundColor: kBackgroundColor,
       body: Padding(
@@ -26,6 +34,7 @@ class _ModulScreenState extends State<ModulScreen> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            //Title Row
             Row(
               children: [
                 IconButton(
@@ -43,7 +52,7 @@ class _ModulScreenState extends State<ModulScreen> {
                 ),
                 Flexible(
                   child: TitleText(
-                    content: "Modul Name",
+                    content: cModul.name,
                   ),
                 ),
               ],
@@ -55,6 +64,7 @@ class _ModulScreenState extends State<ModulScreen> {
             const SizedBox(
               height: kDefaultPadding / 2,
             ),
+            //Today & Start
             Row(
               children: [
                 StartButton(
@@ -96,18 +106,19 @@ class _ModulScreenState extends State<ModulScreen> {
                         physics: const AlwaysScrollableScrollPhysics(),
                         scrollDirection: Axis.horizontal,
                         children: [
-                          for (int i = 0; i < 5; i++)
+                          for (int i = 0; i < cModul.content.length; i++)
                             Padding(
                               padding: const EdgeInsets.only(
                                   right: kDefaultPadding / 4),
                               child: QuestionCard(
-                                question: "Frage",
+                                question: cModul.content[i].question,
                                 cardScreen: QuestionEditScreen(
+                                  question: cModul.content[i],
                                   edit: true,
                                 ),
-                                currentPhase: 2,
-                                phaseCount: 5,
-                                nextQueryDate: DateTime.now(),
+                                currentPhase: cModul.content[i].phase,
+                                phaseCount: cModul.phaseCnt,
+                                nextQueryDate: cModul.content[i].nextQuery,
                               ),
                             ),
                         ],
@@ -122,6 +133,7 @@ class _ModulScreenState extends State<ModulScreen> {
             const SizedBox(
               height: kDefaultPadding / 2,
             ),
+            //All
             SizedBox(
               width: MediaQuery.of(context).size.width - (kDefaultPadding * 2),
               height: 220,
@@ -152,18 +164,19 @@ class _ModulScreenState extends State<ModulScreen> {
                     physics: const AlwaysScrollableScrollPhysics(),
                     scrollDirection: Axis.horizontal,
                     children: [
-                      for (int i = 0; i < 5; i++)
+                      for (int i = 0; i < cModul.content.length; i++)
                         Padding(
                           padding:
                               const EdgeInsets.only(right: kDefaultPadding / 4),
                           child: QuestionCard(
-                            question: "Frage",
+                            question: cModul.content[i].question,
                             cardScreen: QuestionEditScreen(
+                              question: cModul.content[i],
                               edit: true,
                             ),
-                            currentPhase: 2,
-                            phaseCount: 5,
-                            nextQueryDate: DateTime.now(),
+                            currentPhase: cModul.content[i].phase,
+                            phaseCount: cModul.phaseCnt,
+                            nextQueryDate: cModul.content[i].nextQuery,
                           ),
                         ),
                     ],
@@ -187,6 +200,7 @@ class _ModulScreenState extends State<ModulScreen> {
                     context,
                     MaterialPageRoute(
                       builder: (context) => ModulEditScreen(
+                        modul: widget.currentModul,
                         edit: true,
                       ),
                     ),
@@ -220,6 +234,13 @@ class _ModulScreenState extends State<ModulScreen> {
                   context,
                   MaterialPageRoute(
                       builder: (context) => QuestionEditScreen(
+                            question: Question(
+                                question: "null",
+                                answer: "null",
+                                phase: 0,
+                                imgPath: "",
+                                nextQuery:
+                                    DateTime.now()), //TODO Change new question
                             edit: false,
                           )),
                 );

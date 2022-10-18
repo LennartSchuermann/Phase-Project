@@ -322,3 +322,33 @@ class TextInputField extends StatelessWidget {
     );
   }
 }
+
+//Loading Page
+class LoadingPage extends StatelessWidget {
+  const LoadingPage({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: kBackgroundColor,
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            TitleText(content: "Phase Project"),
+            const SizedBox(
+              height: kDefaultPadding * 2,
+            ),
+            const CircularProgressIndicator(
+              color: kFontColor,
+            ),
+            const SizedBox(
+              height: 0, //kDefaultPadding,
+            ),
+            //DefaultText(content: "Laden...")
+          ],
+        ),
+      ),
+    );
+  }
+}

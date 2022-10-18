@@ -1,16 +1,20 @@
 // ignore_for_file: must_be_immutable
 
+import 'dart:io';
+
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:phase_project/classes/question_podo.dart';
 
 import '../design.dart';
 import '../logic/file_handling.dart';
 import '../prefabs.dart';
 
 class QuestionEditScreen extends StatefulWidget {
-  QuestionEditScreen({required this.edit, super.key});
+  QuestionEditScreen({required this.edit, required this.question, super.key});
 
+  Question question;
   bool edit;
 
   @override
@@ -50,8 +54,8 @@ class _QuestionEditScreenState extends State<QuestionEditScreen> {
                 Flexible(
                   child: TitleText(
                     content: widget.edit
-                        ? "Bearbeiten | Frage"
-                        : "Erstellen | Frage",
+                        ? "Bearbeiten | ${widget.question.question}"
+                        : "Erstellen | ${widget.question.question}",
                   ),
                 )
               ],
@@ -62,7 +66,7 @@ class _QuestionEditScreenState extends State<QuestionEditScreen> {
             TextInputField(
               controller: questionTextController,
               textInputType: TextInputType.text,
-              hintTxt: "Frage",
+              hintTxt: "Frage (${widget.question.question})",
             ),
             const SizedBox(
               height: kDefaultPadding,
@@ -70,8 +74,19 @@ class _QuestionEditScreenState extends State<QuestionEditScreen> {
             TextInputField(
               controller: answerTextController,
               textInputType: TextInputType.text,
-              hintTxt: "Antwort",
+              hintTxt: "Antwort (${widget.question.answer})",
             ),
+            const SizedBox(
+              height: kDefaultPadding,
+            ),
+            widget.question.imgPath != ""
+                ? Container(
+                    color: kHighlightColor,
+                    width: 500,
+                    height: 320,
+                    child: Image.file(
+                        fit: BoxFit.fill, File(widget.question.imgPath)))
+                : const SizedBox(),
             const SizedBox(
               height: kDefaultPadding,
             ),

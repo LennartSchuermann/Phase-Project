@@ -4,11 +4,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:phase_project/design.dart';
 
+import '../classes/modul_podo.dart';
 import '../prefabs.dart';
 
 class ModulEditScreen extends StatefulWidget {
-  ModulEditScreen({required this.edit, super.key});
+  ModulEditScreen({required this.edit, required this.modul, super.key});
 
+  Modul modul;
   bool edit;
 
   @override
@@ -47,8 +49,8 @@ class _ModulEditScreenState extends State<ModulEditScreen> {
                 Flexible(
                   child: TitleText(
                     content: widget.edit
-                        ? "Bearbeiten | Modul Name"
-                        : "Erstellen | Modul Name",
+                        ? "Bearbeiten | ${widget.modul.name}"
+                        : "Erstellen | ${widget.modul.name}",
                   ),
                 )
               ],
@@ -59,7 +61,7 @@ class _ModulEditScreenState extends State<ModulEditScreen> {
             TextInputField(
               controller: titleTextController,
               textInputType: TextInputType.text,
-              hintTxt: "Titel",
+              hintTxt: "Titel (${widget.modul.name})",
             ),
             const SizedBox(
               height: kDefaultPadding,
@@ -67,7 +69,7 @@ class _ModulEditScreenState extends State<ModulEditScreen> {
             TextInputField(
               controller: phaseTextController,
               textInputType: TextInputType.number,
-              hintTxt: "Anzahl Phasen",
+              hintTxt: "Anzahl Phasen (${widget.modul.phaseCnt})",
             ),
           ],
         ),

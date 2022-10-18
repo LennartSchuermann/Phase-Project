@@ -9,6 +9,7 @@ import 'package:phase_project/screens/modul_screen.dart';
 
 import '../classes/modul_podo.dart';
 import '../logic/file_handling.dart';
+import '../logic/query_handling.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -25,6 +26,7 @@ class _HomeScreenState extends State<HomeScreen> {
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
           if (snapshot.hasData) {
             List<Modul> moduls = getModuls(snapshot.data);
+            List<Modul> modulsToQuery = getModulsToQuery(moduls);
             return Scaffold(
               backgroundColor: kBackgroundColor,
               body: Padding(
@@ -39,71 +41,81 @@ class _HomeScreenState extends State<HomeScreen> {
                       children: [
                         Flexible(
                           child: TitleText(
-                            content: "Phase Project",
+                            content: kAppName,
                           ),
                         ),
-                        DescriptionText(
-                            content: "Design Preview Build | Lennart S. ©")
+                        DescriptionText(content: kAppCaption)
                       ],
                     ),
                     const SizedBox(
                       height: kDefaultPadding,
                     ),
-                    HeaderText(content: "Heute fällig:"),
-                    const SizedBox(
-                      height: kDefaultPadding / 2,
+                    modulsToQuery.isNotEmpty
+                        ? HeaderText(content: "Heute fällig:")
+                        : const SizedBox(),
+                    SizedBox(
+                      height:
+                          modulsToQuery.isNotEmpty ? kDefaultPadding / 2 : 0,
                     ),
                     //Today
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width -
-                          (kDefaultPadding * 2),
-                      height: 220,
-                      child: ScrollConfiguration(
-                        behavior: ScrollConfiguration.of(context).copyWith(
-                          dragDevices: {
-                            PointerDeviceKind.touch,
-                            PointerDeviceKind.mouse,
-                          },
-                        ),
-                        child: ShaderMask(
-                          shaderCallback: (Rect rect) {
-                            return const LinearGradient(
-                              begin: Alignment.centerLeft,
-                              end: Alignment.centerRight,
-                              colors: [
-                                Colors.transparent,
-                                kBackgroundColor,
-                              ],
-                              stops: [
-                                0.9,
-                                1.0
-                              ], // 10% purple, 80% transparent, 10% purple
-                            ).createShader(rect);
-                          },
-                          blendMode: BlendMode.dstOut,
-                          child: ListView(
-                            physics: const AlwaysScrollableScrollPhysics(),
-                            scrollDirection: Axis.horizontal,
-                            children: [
-                              for (int i = 0; i < moduls.length; i++)
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      right: kDefaultPadding / 4),
-                                  child: ModulCard(
-                                    modulName: moduls[i].name,
-                                    cardCount: moduls[i].content.length,
-                                    phaseCount: moduls[i].phaseCnt,
-                                    modulScreen: ModulScreen(
-                                      currentModul: moduls[i],
-                                    ),
-                                  ),
+                    modulsToQuery.isNotEmpty
+                        ? SizedBox(
+                            width: MediaQuery.of(context).size.width -
+                                (kDefaultPadding * 2),
+                            height: 220,
+                            child: ScrollConfiguration(
+                              behavior:
+                                  ScrollConfiguration.of(context).copyWith(
+                                dragDevices: {
+                                  PointerDeviceKind.touch,
+                                  PointerDeviceKind.mouse,
+                                },
+                              ),
+                              child: ShaderMask(
+                                shaderCallback: (Rect rect) {
+                                  return const LinearGradient(
+                                    begin: Alignment.centerLeft,
+                                    end: Alignment.centerRight,
+                                    colors: [
+                                      Colors.transparent,
+                                      kBackgroundColor,
+                                    ],
+                                    stops: [
+                                      0.9,
+                                      1.0
+                                    ], // 10% purple, 80% transparent, 10% purple
+                                  ).createShader(rect);
+                                },
+                                blendMode: BlendMode.dstOut,
+                                child: ListView(
+                                  physics:
+                                      const AlwaysScrollableScrollPhysics(),
+                                  scrollDirection: Axis.horizontal,
+                                  children: [
+                                    for (int i = 0;
+                                        i < modulsToQuery.length;
+                                        i++)
+                                      Padding(
+                                        padding: const EdgeInsets.only(
+                                            right: kDefaultPadding / 4),
+                                        child: ModulCard(
+                                          modulName: moduls[i].name,
+                                          cardCount: moduls[i].content.length,
+                                          phaseCount: moduls[i].phaseCnt,
+                                          modulScreen: ModulScreen(
+                                            currentModul: moduls[i],
+                                          ),
+                                        ),
+                                      ),
+                                  ],
                                 ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SperationBar(),
+                              ),
+                            ),
+                          )
+                        : const SizedBox(),
+                    modulsToQuery.isNotEmpty
+                        ? const SperationBar()
+                        : const SizedBox(),
                     HeaderText(content: "Alle Fächer:"),
                     const SizedBox(
                       height: kDefaultPadding / 2,

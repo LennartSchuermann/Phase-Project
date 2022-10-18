@@ -50,7 +50,10 @@ Future<dynamic> readSaveFile() async {
 
   final saveFile = File('${dir.path}\\save.json');
 
-  var data = json.decode(await saveFile.readAsString());
+  var data = [];
+  if (await saveFile.readAsString() != "") {
+    data = json.decode(await saveFile.readAsString());
+  }
 
   return data;
 }

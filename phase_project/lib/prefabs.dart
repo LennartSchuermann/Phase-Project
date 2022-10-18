@@ -335,7 +335,7 @@ class LoadingPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            TitleText(content: "Phase Project"),
+            TitleText(content: kAppName),
             const SizedBox(
               height: kDefaultPadding * 2,
             ),
@@ -343,9 +343,9 @@ class LoadingPage extends StatelessWidget {
               color: kFontColor,
             ),
             const SizedBox(
-              height: 0, //kDefaultPadding,
+              height: kDefaultPadding,
             ),
-            //DefaultText(content: "Laden...")
+            DescriptionText(content: "$kAppVersion | $kAppCaption")
           ],
         ),
       ),

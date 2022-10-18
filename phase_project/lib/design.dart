@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 
 const String kAppName = "Phase Project";
-const String kVersion = "0.0.1";
+const String kAppCaption = "Dynamic Preview Build | Lennart S. ©";
+const String kAppVersion = "v0.2";
 
 const kFalseColor = Color(0xffE74C3C);
 const kRightColor = Color(0xff0be881);

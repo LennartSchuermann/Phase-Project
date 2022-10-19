@@ -120,6 +120,7 @@ class _ModulScreenState extends State<ModulScreen> {
                                     child: QuestionCard(
                                       question: cModul.content[i].question,
                                       cardScreen: QuestionEditScreen(
+                                        modul: cModul,
                                         question: cModul.content[i],
                                         edit: true,
                                       ),
@@ -182,6 +183,7 @@ class _ModulScreenState extends State<ModulScreen> {
                           child: QuestionCard(
                             question: cModul.content[i].question,
                             cardScreen: QuestionEditScreen(
+                              modul: cModul,
                               question: cModul.content[i],
                               edit: true,
                             ),
@@ -245,6 +247,7 @@ class _ModulScreenState extends State<ModulScreen> {
                   context,
                   MaterialPageRoute(
                       builder: (context) => QuestionEditScreen(
+                            modul: cModul,
                             question: Question(
                                 question: "null",
                                 answer: "null",

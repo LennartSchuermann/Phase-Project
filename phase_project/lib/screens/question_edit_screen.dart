@@ -1,4 +1,4 @@
-// ignore_for_file: must_be_immutable
+// ignore_for_file: must_be_immutable, use_build_context_synchronously
 
 import 'dart:io';
 
@@ -6,14 +6,21 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:phase_project/classes/question_podo.dart';
+import 'package:phase_project/screens/home_screen.dart';
 
+import '../classes/modul_podo.dart';
 import '../design.dart';
 import '../logic/file_handling.dart';
 import '../prefabs.dart';
 
 class QuestionEditScreen extends StatefulWidget {
-  QuestionEditScreen({required this.edit, required this.question, super.key});
+  QuestionEditScreen(
+      {required this.edit,
+      required this.modul,
+      required this.question,
+      super.key});
 
+  Modul modul;
   Question question;
   bool edit;
 
@@ -36,6 +43,7 @@ class _QuestionEditScreenState extends State<QuestionEditScreen> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            //Title
             Row(
               children: [
                 IconButton(
@@ -120,22 +128,32 @@ class _QuestionEditScreenState extends State<QuestionEditScreen> {
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
           //TODO Save data
-
-          var jsonData = await readSaveFile();
-          getModuls(jsonData);
+          bool finished = false;
 
           if (widget.edit) {
-            //only edit existing data
+            //edit modul;
+            print("Editing:");
           } else {
-            //save as new data
+            //add modul
+            Modul modulToAddQuestion;
 
+            if (questionTextController.text != "" &&
+                phaseTextController.text != "") {
+              //modulToAddQuestion.content.add(Question(question: question, answer: answer, imgPath: imgPath, phase: phase, nextQuery: nextQuery))
+
+              print("Adding Question:");
+              //addData(modulToAdd);
+
+              finished = true;
+            }
           }
 
-          /* Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => WIDGET),
-          ); */
+          if (finished) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const HomeScreen()),
+            );
+          }
         },
         backgroundColor: kBackgroundColor,
         foregroundColor: kFontColor,

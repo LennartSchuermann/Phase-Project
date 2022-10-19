@@ -32,16 +32,19 @@ Future<File> saveFile(PlatformFile file) async {
 
 //Create
 Future<Directory> createSaveFile() async {
-  final Directory dir = await getDir(dataPath);
-
-  final saveFile = File('${dir.path}\\save.json');
+  final File saveFile = await getSaveFile();
   if (!await saveFile.exists()) {
     await saveFile.create(recursive: true);
   }
 
   //TODO add template json??
 
-  return dir;
+  return Directory(saveFile.path);
+}
+
+Future<File> getSaveFile() async {
+  final Directory dir = await getDir(dataPath);
+  return File('${dir.path}\\save.json');
 }
 
 //Read
@@ -81,6 +84,15 @@ List<Question> getQuestions(Modul modul) {
 //Edit
 
 //Add
+Future addData(Modul modul) async {
+  List<Modul> moduls = getModuls(await readSaveFile());
+  moduls.add(modul);
+
+  final File saveFile = await getSaveFile();
+  saveFile.writeAsStringSync(json.encode(moduls));
+
+  print(modul.toJson());
+}
 
 //Print Content
 void printContent(List<Modul> moduls) {

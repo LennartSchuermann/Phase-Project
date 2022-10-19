@@ -180,6 +180,7 @@ class _QueryScreenState extends State<QueryScreen> {
             context,
             MaterialPageRoute(
               builder: (context) => QuestionEditScreen(
+                modul: widget.modul,
                 question: questions[0],
                 edit: true,
               ),

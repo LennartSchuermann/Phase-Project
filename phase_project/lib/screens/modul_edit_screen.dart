@@ -3,8 +3,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:phase_project/design.dart';
+import 'package:phase_project/screens/home_screen.dart';
 
 import '../classes/modul_podo.dart';
+import '../logic/file_handling.dart';
 import '../prefabs.dart';
 
 class ModulEditScreen extends StatefulWidget {
@@ -77,11 +79,36 @@ class _ModulEditScreenState extends State<ModulEditScreen> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           //TODO Save data
-          /* Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => WIDGET),
-          ); */
+          bool finished = false;
+
+          if (widget.edit) {
+            //edit modul;
+            print("Editing:");
+          } else {
+            //add modul
+            Modul modulToAdd;
+
+            if (titleTextController.text != "" &&
+                phaseTextController.text != "") {
+              modulToAdd = Modul(
+                name: titleTextController.text,
+                phaseCnt: int.parse(phaseTextController.text),
+                content: [],
+              );
+
+              print("Adding:");
+              addData(modulToAdd);
+
+              finished = true;
+            }
+          }
+
+          if (finished) {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const HomeScreen()),
+            );
+          }
         },
         backgroundColor: kBackgroundColor,
         foregroundColor: kFontColor,

@@ -4,15 +4,17 @@ Author: Lennart S.
 
 ## Next Updates:
 v0.3
-- Editing Questions
-- Editing Moduls
+- Editing Moduls & Questions
+- Implementing Deleting Moduls & Questions
 
 v0.4
+- Fixing To Query Today
 - Implementing Phase System
 - Start Query
 
 v0.5
 - Light (KIT) Theme
+- English support
 
 
 ## Pictures

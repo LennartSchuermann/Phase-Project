@@ -92,12 +92,33 @@ Future editData(Modul modul) async {
     moduls.add(modul);
     await saveData(moduls, modul);
   }
+
+  return moduls;
+}
+
+Future editQuestion(Modul modul, Question question) async {
+  Question? oldQuestion = getDuplicateQuestion(modul.content, question.id);
+  if (oldQuestion != null) {
+    modul.content.remove(oldQuestion);
+
+    modul.content.add(question);
+    await saveData(await editData(modul), modul);
+  }
 }
 
 Modul? getDuplicateModul(List<Modul> moduls, int id) {
   for (var modul in moduls) {
     if (modul.id == id) {
       return modul;
+    }
+  }
+  return null;
+}
+
+Question? getDuplicateQuestion(List<Question> questions, int id) {
+  for (var question in questions) {
+    if (question.id == id) {
+      return question;
     }
   }
   return null;

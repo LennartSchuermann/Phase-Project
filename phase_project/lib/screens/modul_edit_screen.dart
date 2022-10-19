@@ -78,18 +78,30 @@ class _ModulEditScreenState extends State<ModulEditScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          //TODO Save data
           bool finished = false;
 
           if (widget.edit) {
             //edit modul;
+            Modul editedModul = widget.modul;
+
+            if (titleTextController.text != "") {
+              editedModul.name = titleTextController.text;
+            }
+
+            if (phaseTextController.text != "") {
+              editedModul.phaseCnt = int.parse(phaseTextController.text);
+            }
+
             print("Editing:");
+            await editData(editedModul);
+            finished = true;
           } else {
             //add modul
             Modul modulToAdd;
 
             if (titleTextController.text != "" &&
-                phaseTextController.text != "") {
+                phaseTextController.text != "" &&
+                int.parse(phaseTextController.text) > 0) {
               modulToAdd = Modul(
                 id: DateTime.now().millisecondsSinceEpoch,
                 name: titleTextController.text,
@@ -99,7 +111,6 @@ class _ModulEditScreenState extends State<ModulEditScreen> {
 
               print("Adding:");
               await addData(modulToAdd);
-
               finished = true;
             }
           }

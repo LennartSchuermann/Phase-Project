@@ -135,7 +135,24 @@ class _QuestionEditScreenState extends State<QuestionEditScreen> {
 
           if (widget.edit) {
             //edit question;
+            Modul editedModul = widget.modul;
+            Question editedQuestion = widget.question;
+
+            if (questionTextController.text != "") {
+              editedQuestion.question = questionTextController.text;
+            }
+
+            if (answerTextController.text != "") {
+              editedQuestion.answer = answerTextController.text;
+            }
+
+            if (imgPath != "") {
+              editedQuestion.imgPath = imgPath;
+            }
+
             print("Editing:");
+            await editData(editedModul);
+            finished = true;
           } else {
             //add question to modul
             if (questionTextController.text != "") {

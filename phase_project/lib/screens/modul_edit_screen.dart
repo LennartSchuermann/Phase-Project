@@ -93,7 +93,7 @@ class _ModulEditScreenState extends State<ModulEditScreen> {
             }
 
             print("Editing:");
-            await editData(editedModul);
+            await editData(editedModul, false);
             finished = true;
           } else {
             //add modul

@@ -151,7 +151,7 @@ class _QuestionEditScreenState extends State<QuestionEditScreen> {
             }
 
             print("Editing:");
-            await editData(editedModul);
+            await editData(editedModul, false);
             finished = true;
           } else {
             //add question to modul
@@ -168,7 +168,7 @@ class _QuestionEditScreenState extends State<QuestionEditScreen> {
               widget.modul.content.add(newQuestion);
 
               print("Adding Question:");
-              await editData(widget.modul);
+              await editData(widget.modul, false);
 
               finished = true;
             }

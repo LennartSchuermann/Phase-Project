@@ -5,6 +5,8 @@ part 'modul_podo.g.dart';
 
 @JsonSerializable(explicitToJson: true)
 class Modul {
+  final int id;
+
   String name;
   int phaseCnt;
   List<Question> content;
@@ -13,6 +15,7 @@ class Modul {
     required this.name,
     required this.content,
     required this.phaseCnt,
+    required this.id,
   });
 
   factory Modul.fromJson(Map<String, dynamic> json) => _$ModulFromJson(json);

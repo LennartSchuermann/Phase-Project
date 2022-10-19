@@ -176,6 +176,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   MaterialPageRoute(
                     builder: (context) => ModulEditScreen(
                       modul: Modul(
+                          id: 0,
                           content: List.empty(),
                           name: "null",
                           phaseCnt: 0), //TODO CHANGE to new modul

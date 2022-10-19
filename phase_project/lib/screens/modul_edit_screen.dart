@@ -91,6 +91,7 @@ class _ModulEditScreenState extends State<ModulEditScreen> {
             if (titleTextController.text != "" &&
                 phaseTextController.text != "") {
               modulToAdd = Modul(
+                id: DateTime.now().millisecondsSinceEpoch,
                 name: titleTextController.text,
                 phaseCnt: int.parse(phaseTextController.text),
                 content: [],

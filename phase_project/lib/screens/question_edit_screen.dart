@@ -31,7 +31,8 @@ class QuestionEditScreen extends StatefulWidget {
 class _QuestionEditScreenState extends State<QuestionEditScreen> {
   TextEditingController questionTextController = TextEditingController();
   TextEditingController answerTextController = TextEditingController();
-  TextEditingController phaseTextController = TextEditingController();
+
+  String imgPath = "";
 
   @override
   Widget build(BuildContext context) {
@@ -105,7 +106,9 @@ class _QuestionEditScreenState extends State<QuestionEditScreen> {
 
                 //Open single file:
                 final file = result.files.first;
-                await saveFile(file);
+
+                File img = await saveFile(file);
+                imgPath = img.path.toString();
               },
               child: Container(
                 height: 60,
@@ -131,18 +134,24 @@ class _QuestionEditScreenState extends State<QuestionEditScreen> {
           bool finished = false;
 
           if (widget.edit) {
-            //edit modul;
+            //edit question;
             print("Editing:");
           } else {
-            //add modul
-            Modul modulToAddQuestion;
+            //add question to modul
+            if (questionTextController.text != "") {
+              Question newQuestion = Question(
+                id: DateTime.now().millisecondsSinceEpoch,
+                question: questionTextController.text,
+                answer: answerTextController.text,
+                imgPath: imgPath,
+                phase: 0,
+                nextQuery: DateTime.now(),
+              );
 
-            if (questionTextController.text != "" &&
-                phaseTextController.text != "") {
-              //modulToAddQuestion.content.add(Question(question: question, answer: answer, imgPath: imgPath, phase: phase, nextQuery: nextQuery))
+              widget.modul.content.add(newQuestion);
 
               print("Adding Question:");
-              //addData(modulToAdd);
+              addData(widget.modul);
 
               finished = true;
             }

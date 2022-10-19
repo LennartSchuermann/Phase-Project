@@ -4,6 +4,8 @@ part 'question_podo.g.dart';
 
 @JsonSerializable()
 class Question {
+  final int id;
+
   String question;
   String answer;
   String imgPath;
@@ -16,6 +18,7 @@ class Question {
     required this.imgPath,
     required this.phase,
     required this.nextQuery,
+    required this.id,
   });
 
   factory Question.fromJson(Map<String, dynamic> json) =>

@@ -12,9 +12,11 @@ Modul _$ModulFromJson(Map<String, dynamic> json) => Modul(
           .map((e) => Question.fromJson(e as Map<String, dynamic>))
           .toList(),
       phaseCnt: json['phaseCnt'] as int,
+      id: json['id'] as int,
     );
 
 Map<String, dynamic> _$ModulToJson(Modul instance) => <String, dynamic>{
+      'id': instance.id,
       'name': instance.name,
       'phaseCnt': instance.phaseCnt,
       'content': instance.content.map((e) => e.toJson()).toList(),

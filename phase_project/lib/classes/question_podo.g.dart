@@ -12,9 +12,11 @@ Question _$QuestionFromJson(Map<String, dynamic> json) => Question(
       imgPath: json['imgPath'] as String,
       phase: json['phase'] as int,
       nextQuery: DateTime.parse(json['nextQuery'] as String),
+      id: json['id'] as int,
     );
 
 Map<String, dynamic> _$QuestionToJson(Question instance) => <String, dynamic>{
+      'id': instance.id,
       'question': instance.question,
       'answer': instance.answer,
       'imgPath': instance.imgPath,

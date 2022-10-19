@@ -249,6 +249,7 @@ class _ModulScreenState extends State<ModulScreen> {
                       builder: (context) => QuestionEditScreen(
                             modul: cModul,
                             question: Question(
+                                id: 0,
                                 question: "null",
                                 answer: "null",
                                 phase: 0,

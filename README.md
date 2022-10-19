@@ -28,7 +28,7 @@ v0.5: Overhall
 ## Supported Platforms
 (:white_check_mark: - Yes | :x: - No | :warning: - MAYBE in the future)
 - Windows :white_check_mark:
-- Mac OS :warning:
+- MacOS :warning:
 - Linux :warning:
 - Android :warning:
 - IOS :x:

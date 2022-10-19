@@ -2,7 +2,7 @@
 A small desktop college learning application made with Flutter.
 Author: Lennart S.
 
-## Next Updates:
+## Roadmap:
 v0.1 - v0.2 :white_check_mark:
 - Design Preview Build :white_check_mark:
 - Manual JSON Loading/Editing Build :white_check_mark:

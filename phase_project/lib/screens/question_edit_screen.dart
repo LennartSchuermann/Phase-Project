@@ -151,7 +151,7 @@ class _QuestionEditScreenState extends State<QuestionEditScreen> {
               widget.modul.content.add(newQuestion);
 
               print("Adding Question:");
-              addData(widget.modul);
+              await editData(widget.modul);
 
               finished = true;
             }

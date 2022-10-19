@@ -1,4 +1,4 @@
-// ignore_for_file: must_be_immutable
+// ignore_for_file: must_be_immutable, use_build_context_synchronously
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -77,7 +77,7 @@ class _ModulEditScreenState extends State<ModulEditScreen> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
+        onPressed: () async {
           //TODO Save data
           bool finished = false;
 
@@ -98,7 +98,7 @@ class _ModulEditScreenState extends State<ModulEditScreen> {
               );
 
               print("Adding:");
-              addData(modulToAdd);
+              await addData(modulToAdd);
 
               finished = true;
             }

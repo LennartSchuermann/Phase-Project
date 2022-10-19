@@ -22,6 +22,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     rebuildAllChildren(context);
+
     return FutureBuilder<dynamic>(
       future: readSaveFile(),
       builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
@@ -176,10 +177,11 @@ class _HomeScreenState extends State<HomeScreen> {
                   MaterialPageRoute(
                     builder: (context) => ModulEditScreen(
                       modul: Modul(
-                          id: 0,
-                          content: List.empty(),
-                          name: "null",
-                          phaseCnt: 0), //TODO CHANGE to new modul
+                        id: 0,
+                        content: List.empty(),
+                        name: "null",
+                        phaseCnt: 0,
+                      ),
                       edit: false,
                     ),
                   ),
@@ -214,6 +216,7 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 void rebuildAllChildren(BuildContext context) {
+  print("Updating...");
   void rebuild(Element el) {
     el.markNeedsBuild();
     el.visitChildren(rebuild);

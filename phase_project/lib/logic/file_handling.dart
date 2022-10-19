@@ -82,12 +82,33 @@ List<Question> getQuestions(Modul modul) {
 }
 
 //Edit
+Future editData(Modul modul) async {
+  List<Modul> moduls = getModuls(await readSaveFile());
+  Modul oldModul = getDuplicateModul(moduls, modul.id)!;
+  moduls.remove(oldModul);
+
+  moduls.add(modul);
+  await saveData(moduls, modul);
+}
+
+Modul? getDuplicateModul(List<Modul> moduls, int id) {
+  for (var modul in moduls) {
+    if (modul.id == id) {
+      return modul;
+    }
+  }
+  return null;
+}
 
 //Add
 Future addData(Modul modul) async {
   List<Modul> moduls = getModuls(await readSaveFile());
   moduls.add(modul);
 
+  await saveData(moduls, modul);
+}
+
+Future saveData(List<Modul> moduls, modul) async {
   final File saveFile = await getSaveFile();
   saveFile.writeAsStringSync(json.encode(moduls));
 

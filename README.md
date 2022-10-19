@@ -4,8 +4,10 @@ Author: Lennart S.
 
 ## Next Updates:
 v0.3
-- Editing Moduls & Questions
-- Implementing Deleting Moduls & Questions
+- Editing Moduls & Questions :white_check_mark:
+- Implementing Deleting Moduls & Questions :white_check_mark:
+
+- Release
 
 v0.4
 - Fixing To Query Today

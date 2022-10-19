@@ -19,11 +19,11 @@ v0.4: Query
 
 v0.5: Overhall
 - Change "All Moduls & Questions" Scrolldirection (to vertical)
+- About Screen
 - Light (KIT) Theme
 - English support
 
 ...
-
 
 ## Pictures
 > first prototype design

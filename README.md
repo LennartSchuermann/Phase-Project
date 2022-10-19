@@ -34,7 +34,7 @@ v0.5: Overhall
 - IOS :x:
 
 ## Installation Guide
-> :warning: coming soon :warning:
+>  coming soon 
 
 ## Pictures
 > first prototype design

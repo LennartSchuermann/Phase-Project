@@ -95,12 +95,63 @@ class _HomeScreenState extends State<HomeScreen> {
                                     Padding(
                                       padding: const EdgeInsets.only(
                                           right: kDefaultPadding / 4),
-                                      child: ModulCard(
-                                        modulName: moduls[i].name,
-                                        cardCount: moduls[i].content.length,
-                                        phaseCount: moduls[i].phaseCnt,
-                                        modulScreen: ModulScreen(
-                                          currentModul: moduls[i],
+                                      child: GestureDetector(
+                                        //Alert Dialog
+                                        onLongPress: () {
+                                          showDialog<String>(
+                                              context: context,
+                                              builder: (BuildContext context) =>
+                                                  AlertDialog(
+                                                    backgroundColor:
+                                                        kBackgroundColor,
+                                                    title: HeaderText(
+                                                      content:
+                                                          'Lösche "${moduls[i].name}"?',
+                                                    ),
+                                                    content: DefaultText(
+                                                      content:
+                                                          'Wiederherstellen ist nicht möglich!',
+                                                    ),
+                                                    actions: <Widget>[
+                                                      TextButton(
+                                                        onPressed: () =>
+                                                            Navigator.pop(
+                                                                context,
+                                                                'Cancel'),
+                                                        child: DefaultText(
+                                                          content: 'Zurück',
+                                                        ),
+                                                      ),
+                                                      //DELETE DISH
+                                                      TextButton(
+                                                        onPressed: () async {
+                                                          //Delete Modul
+                                                          await editData(
+                                                              moduls[i], true);
+
+                                                          // ignore: use_build_context_synchronously
+                                                          Navigator.push(
+                                                            context,
+                                                            MaterialPageRoute(
+                                                              builder: (context) =>
+                                                                  const HomeScreen(),
+                                                            ),
+                                                          );
+                                                        },
+                                                        child: DefaultText(
+                                                          content: 'Löschen',
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ));
+                                        },
+                                        child: ModulCard(
+                                          modulName: moduls[i].name,
+                                          cardCount: moduls[i].content.length,
+                                          phaseCount: moduls[i].phaseCnt,
+                                          modulScreen: ModulScreen(
+                                            currentModul: moduls[i],
+                                          ),
                                         ),
                                       ),
                                     ),
@@ -153,12 +204,61 @@ class _HomeScreenState extends State<HomeScreen> {
                               Padding(
                                 padding: const EdgeInsets.only(
                                     right: kDefaultPadding / 4),
-                                child: ModulCard(
-                                  modulName: moduls[i].name,
-                                  cardCount: moduls[i].content.length,
-                                  phaseCount: moduls[i].phaseCnt,
-                                  modulScreen: ModulScreen(
-                                    currentModul: moduls[i],
+                                child: GestureDetector(
+                                  //Alert Dialog
+                                  onLongPress: () {
+                                    showDialog<String>(
+                                        context: context,
+                                        builder: (BuildContext context) =>
+                                            AlertDialog(
+                                              backgroundColor: kBackgroundColor,
+                                              title: HeaderText(
+                                                content:
+                                                    'Lösche "${moduls[i].name}"?',
+                                              ),
+                                              content: DefaultText(
+                                                content:
+                                                    'Wiederherstellen ist nicht möglich!',
+                                              ),
+                                              actions: <Widget>[
+                                                TextButton(
+                                                  onPressed: () =>
+                                                      Navigator.pop(
+                                                          context, 'Cancel'),
+                                                  child: DefaultText(
+                                                    content: 'Zurück',
+                                                  ),
+                                                ),
+                                                //DELETE DISH
+                                                TextButton(
+                                                  onPressed: () async {
+                                                    //Delete Modul
+                                                    await editData(
+                                                        moduls[i], true);
+
+                                                    // ignore: use_build_context_synchronously
+                                                    Navigator.push(
+                                                      context,
+                                                      MaterialPageRoute(
+                                                        builder: (context) =>
+                                                            const HomeScreen(),
+                                                      ),
+                                                    );
+                                                  },
+                                                  child: DefaultText(
+                                                    content: 'Löschen',
+                                                  ),
+                                                ),
+                                              ],
+                                            ));
+                                  },
+                                  child: ModulCard(
+                                    modulName: moduls[i].name,
+                                    cardCount: moduls[i].content.length,
+                                    phaseCount: moduls[i].phaseCnt,
+                                    modulScreen: ModulScreen(
+                                      currentModul: moduls[i],
+                                    ),
                                   ),
                                 ),
                               ),

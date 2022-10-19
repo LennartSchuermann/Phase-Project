@@ -13,6 +13,7 @@ v0.4
 - Start Query
 
 v0.5
+- Change "All Moduls & Questions" Scrolldirection (to vertical)
 - Light (KIT) Theme
 - English support
 

@@ -8,11 +8,13 @@ import 'package:phase_project/classes/question_podo.dart';
 import 'package:phase_project/design.dart';
 import 'package:phase_project/logic/query_handling.dart';
 import 'package:phase_project/prefabs.dart';
+import 'package:phase_project/screens/home_screen.dart';
 import 'package:phase_project/screens/modul_edit_screen.dart';
 import 'package:phase_project/screens/query_screen.dart';
 import 'package:phase_project/screens/question_edit_screen.dart';
 
 import '../classes/modul_podo.dart';
+import '../logic/file_handling.dart';
 
 class ModulScreen extends StatefulWidget {
   ModulScreen({required this.currentModul, super.key});
@@ -117,17 +119,69 @@ class _ModulScreenState extends State<ModulScreen> {
                                   Padding(
                                     padding: const EdgeInsets.only(
                                         right: kDefaultPadding / 4),
-                                    child: QuestionCard(
-                                      question: cModul.content[i].question,
-                                      cardScreen: QuestionEditScreen(
-                                        modul: cModul,
-                                        question: cModul.content[i],
-                                        edit: true,
+                                    child: GestureDetector(
+                                      //Alert Dialog
+                                      onLongPress: () {
+                                        showDialog<String>(
+                                            context: context,
+                                            builder: (BuildContext context) =>
+                                                AlertDialog(
+                                                  backgroundColor:
+                                                      kBackgroundColor,
+                                                  title: HeaderText(
+                                                    content:
+                                                        'Lösche "${cModul.content[i].question}"?',
+                                                  ),
+                                                  content: DefaultText(
+                                                    content:
+                                                        'Wiederherstellen ist nicht möglich!',
+                                                  ),
+                                                  actions: <Widget>[
+                                                    TextButton(
+                                                      onPressed: () =>
+                                                          Navigator.pop(context,
+                                                              'Cancel'),
+                                                      child: DefaultText(
+                                                        content: 'Zurück',
+                                                      ),
+                                                    ),
+                                                    //DELETE DISH
+                                                    TextButton(
+                                                      onPressed: () async {
+                                                        //Delete Modul
+                                                        await editQuestion(
+                                                            cModul,
+                                                            cModul.content[i],
+                                                            true);
+
+                                                        // ignore: use_build_context_synchronously
+                                                        Navigator.push(
+                                                          context,
+                                                          MaterialPageRoute(
+                                                            builder: (context) =>
+                                                                const HomeScreen(),
+                                                          ),
+                                                        );
+                                                      },
+                                                      child: DefaultText(
+                                                        content: 'Löschen',
+                                                      ),
+                                                    ),
+                                                  ],
+                                                ));
+                                      },
+                                      child: QuestionCard(
+                                        question: cModul.content[i].question,
+                                        cardScreen: QuestionEditScreen(
+                                          modul: cModul,
+                                          question: cModul.content[i],
+                                          edit: true,
+                                        ),
+                                        currentPhase: cModul.content[i].phase,
+                                        phaseCount: cModul.phaseCnt,
+                                        nextQueryDate:
+                                            cModul.content[i].nextQuery,
                                       ),
-                                      currentPhase: cModul.content[i].phase,
-                                      phaseCount: cModul.phaseCnt,
-                                      nextQueryDate:
-                                          cModul.content[i].nextQuery,
                                     ),
                                   ),
                               ],
@@ -180,16 +234,64 @@ class _ModulScreenState extends State<ModulScreen> {
                         Padding(
                           padding:
                               const EdgeInsets.only(right: kDefaultPadding / 4),
-                          child: QuestionCard(
-                            question: cModul.content[i].question,
-                            cardScreen: QuestionEditScreen(
-                              modul: cModul,
-                              question: cModul.content[i],
-                              edit: true,
+                          child: GestureDetector(
+                            //Alert Dialog
+                            onLongPress: () {
+                              showDialog<String>(
+                                  context: context,
+                                  builder: (BuildContext context) =>
+                                      AlertDialog(
+                                        backgroundColor: kBackgroundColor,
+                                        title: HeaderText(
+                                          content:
+                                              'Lösche "${cModul.content[i].question}"?',
+                                        ),
+                                        content: DefaultText(
+                                          content:
+                                              'Wiederherstellen ist nicht möglich!',
+                                        ),
+                                        actions: <Widget>[
+                                          TextButton(
+                                            onPressed: () => Navigator.pop(
+                                                context, 'Cancel'),
+                                            child: DefaultText(
+                                              content: 'Zurück',
+                                            ),
+                                          ),
+                                          //DELETE DISH
+                                          TextButton(
+                                            onPressed: () async {
+                                              //Delete Modul
+                                              await editQuestion(cModul,
+                                                  cModul.content[i], true);
+
+                                              // ignore: use_build_context_synchronously
+                                              Navigator.push(
+                                                context,
+                                                MaterialPageRoute(
+                                                  builder: (context) =>
+                                                      const HomeScreen(),
+                                                ),
+                                              );
+                                            },
+                                            child: DefaultText(
+                                              content: 'Löschen',
+                                            ),
+                                          ),
+                                        ],
+                                      ));
+                            },
+                            child: QuestionCard(
+                              question: cModul.content[i].question,
+                              cardScreen: QuestionEditScreen(
+                                modul: cModul,
+                                question: cModul.content[i],
+                                edit: true,
+                              ),
+                              currentPhase: cModul.content[i].phase,
+                              phaseCount: cModul.phaseCnt,
+                              nextQueryDate: cModul.content[i].nextQuery,
                             ),
-                            currentPhase: cModul.content[i].phase,
-                            phaseCount: cModul.phaseCnt,
-                            nextQueryDate: cModul.content[i].nextQuery,
                           ),
                         ),
                     ],

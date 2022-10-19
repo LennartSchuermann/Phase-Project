@@ -25,6 +25,14 @@ v0.5: Overhall
 
 ...
 
+## Supported Platforms
+(:white_check_mark: - Yes | :x: - No | :warning: - MAYBE in the future)
+- Windows :white_check_mark:
+- Mac OS :warning:
+- Linux :warning:
+- Android :warning:
+- IOS :x:
+
 ## Pictures
 > first prototype design
 ![Alt text](images/Github_Preview.png?raw=false "Preview")

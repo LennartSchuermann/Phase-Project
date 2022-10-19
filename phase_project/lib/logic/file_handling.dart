@@ -84,11 +84,14 @@ List<Question> getQuestions(Modul modul) {
 //Edit
 Future editData(Modul modul) async {
   List<Modul> moduls = getModuls(await readSaveFile());
-  Modul oldModul = getDuplicateModul(moduls, modul.id)!;
-  moduls.remove(oldModul);
+  Modul? oldModul = getDuplicateModul(moduls, modul.id);
 
-  moduls.add(modul);
-  await saveData(moduls, modul);
+  if (oldModul != null) {
+    moduls.remove(oldModul);
+
+    moduls.add(modul);
+    await saveData(moduls, modul);
+  }
 }
 
 Modul? getDuplicateModul(List<Modul> moduls, int id) {

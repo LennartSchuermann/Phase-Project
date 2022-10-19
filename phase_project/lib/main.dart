@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Phase Project',
+      title: kAppName,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),

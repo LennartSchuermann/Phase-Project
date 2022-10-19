@@ -7,7 +7,7 @@ v0.1 - v0.2: Design :white_check_mark:
 - Design Preview Build :white_check_mark:
 - Manual JSON Loading/Editing Build :white_check_mark:
 
-v0.3: Functionality
+v0.3: Functionality :white_check_mark:
 - Adding Moduls & Questions (via UI) :white_check_mark:
 - Editing Moduls & Questions (via UI) :white_check_mark:
 - Deleting Moduls & Questions (via UI) :white_check_mark:

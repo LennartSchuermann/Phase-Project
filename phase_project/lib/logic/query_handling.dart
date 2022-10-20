@@ -3,9 +3,11 @@ import 'package:phase_project/classes/question_podo.dart';
 
 import '../classes/modul_podo.dart';
 
-DateTime getNextQueryDate() {
-  //TODO change duration (dependent on current phase)
-  DateTime newDate = DateTime.now().add(const Duration(days: 1));
+List<int> pause = [0, 1, 2, 4, 7, 10, 40, 100, 240]; //max: 9 phases
+
+DateTime getNextQueryDate(int currentPhase) {
+  DateTime newDate =
+      DateTime.now().add(Duration(days: pause[currentPhase - 1]));
   return newDate;
 }
 

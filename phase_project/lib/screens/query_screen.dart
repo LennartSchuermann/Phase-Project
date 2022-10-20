@@ -159,15 +159,19 @@ class _QueryScreenState extends State<QueryScreen> {
                           if (widget.modul.phaseCnt >
                               widget.questions[currentQuestionIndex].phase) {
                             widget.questions[currentQuestionIndex].nextQuery =
-                                getNextQueryDate();
+                                getNextQueryDate(widget
+                                    .questions[currentQuestionIndex].phase);
 
                             widget.questions[currentQuestionIndex].phase++;
                             await editQuestion(widget.modul,
                                 widget.questions[currentQuestionIndex], false);
                           }
 
-                          widget.questions
-                              .remove(widget.questions[currentQuestionIndex]);
+                          if (widget.questions[currentQuestionIndex].phase >
+                              2) {
+                            widget.questions
+                                .remove(widget.questions[currentQuestionIndex]);
+                          }
 
                           if (widget.questions.isEmpty) {
                             //query is done

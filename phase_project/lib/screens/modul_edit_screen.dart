@@ -74,7 +74,7 @@ class _ModulEditScreenState extends State<ModulEditScreen> {
               textInputType: TextInputType.number,
               hintTxt: widget.edit
                   ? "Anzahl Phasen (${widget.modul.phaseCnt})"
-                  : "Anzahl Phasen (>0)",
+                  : "Anzahl Phasen (min. 1; max. 9)",
             ),
           ],
         ),
@@ -104,7 +104,8 @@ class _ModulEditScreenState extends State<ModulEditScreen> {
 
             if (titleTextController.text != "" &&
                 phaseTextController.text != "" &&
-                int.parse(phaseTextController.text) > 0) {
+                int.parse(phaseTextController.text) > 0 &&
+                int.parse(phaseTextController.text) < 10) {
               modulToAdd = Modul(
                 id: DateTime.now().millisecondsSinceEpoch,
                 name: titleTextController.text,

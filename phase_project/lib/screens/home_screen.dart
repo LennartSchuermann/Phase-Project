@@ -146,11 +146,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                                   ));
                                         },
                                         child: ModulCard(
-                                          modulName: moduls[i].name,
-                                          cardCount: moduls[i].content.length,
-                                          phaseCount: moduls[i].phaseCnt,
+                                          modulName: modulsToQuery[i].name,
+                                          cardCount:
+                                              modulsToQuery[i].content.length,
+                                          phaseCount: modulsToQuery[i].phaseCnt,
                                           modulScreen: ModulScreen(
-                                            currentModul: moduls[i],
+                                            currentModul: modulsToQuery[i],
                                           ),
                                         ),
                                       ),

@@ -13,9 +13,10 @@ import '../design.dart';
 import '../prefabs.dart';
 
 class QueryScreen extends StatefulWidget {
-  QueryScreen({required this.modul, super.key});
+  QueryScreen({required this.modul, required this.questions, super.key});
 
   Modul modul;
+  List<Question> questions;
 
   @override
   State<QueryScreen> createState() => _QueryScreenState();
@@ -35,7 +36,6 @@ class _QueryScreenState extends State<QueryScreen> {
 
   @override
   Widget build(BuildContext context) {
-    List<Question> questions = widget.modul.content;
     return Scaffold(
       backgroundColor: kBackgroundColor,
       body: Padding(
@@ -73,7 +73,8 @@ class _QueryScreenState extends State<QueryScreen> {
                   ),
                 ),
                 TitleText(
-                  content: "${currentQuestionIndex + 1} / ${questions.length}",
+                  content:
+                      "${currentQuestionIndex + 1} / ${widget.questions.length}",
                 ),
               ],
             ),
@@ -85,18 +86,20 @@ class _QueryScreenState extends State<QueryScreen> {
               width: MediaQuery.of(context).size.width - (2 * kDefaultPadding),
               child: Column(
                 children: [
-                  HeaderText(content: questions[currentQuestionIndex].question),
+                  HeaderText(
+                      content: widget.questions[currentQuestionIndex].question),
                   const SizedBox(
                     height: kDefaultPadding,
                   ),
-                  questions[currentQuestionIndex].imgPath != ""
+                  widget.questions[currentQuestionIndex].imgPath != ""
                       ? Container(
                           height: 350,
                           width: 900,
                           color: kHighlightColor,
                           child: Image.file(
                               fit: BoxFit.cover,
-                              File(questions[currentQuestionIndex].imgPath)),
+                              File(widget
+                                  .questions[currentQuestionIndex].imgPath)),
                         )
                       : const SizedBox(),
                   const SizedBox(
@@ -104,14 +107,15 @@ class _QueryScreenState extends State<QueryScreen> {
                   ),
                   showAnswer
                       ? DefaultText(
-                          content: questions[currentQuestionIndex].answer)
+                          content:
+                              widget.questions[currentQuestionIndex].answer)
                       : DefaultText(content: ""),
                   const SizedBox(
                     height: kDefaultPadding,
                   ),
                   DefaultText(
                       content:
-                          "Phase: ${questions[currentQuestionIndex].phase}/${widget.modul.phaseCnt}"),
+                          "Phase: ${widget.questions[currentQuestionIndex].phase}/${widget.modul.phaseCnt}"),
                   const SizedBox(
                     height: kDefaultPadding / 2,
                   ),
@@ -122,7 +126,7 @@ class _QueryScreenState extends State<QueryScreen> {
                       GestureDetector(
                         onTap: () {
                           setState(() {
-                            nextQuestion(questions.length);
+                            nextQuestion(widget.questions.length);
                           });
                         },
                         child: QueryActionButton(
@@ -139,17 +143,20 @@ class _QueryScreenState extends State<QueryScreen> {
                         },
                         child: QueryActionButton(
                           text: "Lösung",
-                          color: questions[currentQuestionIndex].answer == ""
-                              ? kBackgroundColor
-                              : kHighlightColor,
+                          color:
+                              widget.questions[currentQuestionIndex].answer ==
+                                      ""
+                                  ? kBackgroundColor
+                                  : kHighlightColor,
                         ),
                       ),
                       GestureDetector(
                         onTap: () {
-                          questions.remove(questions[currentQuestionIndex]);
+                          widget.questions
+                              .remove(widget.questions[currentQuestionIndex]);
                           //TODO increase phase & set date
 
-                          if (questions.isEmpty) {
+                          if (widget.questions.isEmpty) {
                             //query is done
                             Navigator.push(
                               context,
@@ -157,7 +164,7 @@ class _QueryScreenState extends State<QueryScreen> {
                                   builder: (context) => const HomeScreen()),
                             );
                           } else {
-                            nextQuestion(questions.length);
+                            nextQuestion(widget.questions.length);
                             setState(() {});
                           }
                         },
@@ -181,7 +188,7 @@ class _QueryScreenState extends State<QueryScreen> {
             MaterialPageRoute(
               builder: (context) => QuestionEditScreen(
                 modul: widget.modul,
-                question: questions[0],
+                question: widget.questions[0],
                 edit: true,
               ),
             ),

@@ -107,19 +107,21 @@ class _QuestionEditScreenState extends State<QuestionEditScreen> {
                         )
                       : const SizedBox();
                 } else {
-                  return Row(
-                    children: [
-                      const CircularProgressIndicator(
-                        color: kFontColor,
-                      ),
-                      const SizedBox(
-                        width: kDefaultPadding,
-                      ),
-                      DescriptionText(
-                          content:
-                              "Bild existiert möglicherweise nicht unter: ${widget.question.imgPath}")
-                    ],
-                  );
+                  return widget.question.imgPath != ""
+                      ? Row(
+                          children: [
+                            const CircularProgressIndicator(
+                              color: kFontColor,
+                            ),
+                            const SizedBox(
+                              width: kDefaultPadding,
+                            ),
+                            DescriptionText(
+                                content:
+                                    "Bild existiert möglicherweise nicht unter: ${widget.question.imgPath}")
+                          ],
+                        )
+                      : const SizedBox();
                 }
               },
             ),

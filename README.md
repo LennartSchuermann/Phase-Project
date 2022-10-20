@@ -13,9 +13,9 @@ v0.3: Functionality :white_check_mark:
 - Deleting Moduls & Questions (via UI) :white_check_mark:
 
 v0.4: Query
-- Fixing To Query Today
+- Fixing To Query Today :white_check_mark:
 - Implementing Phase System
-- Start Query
+- Start Query :white_check_mark:
 
 v0.5: Overhall
 - Change "All Moduls & Questions" Scrolldirection (to vertical)

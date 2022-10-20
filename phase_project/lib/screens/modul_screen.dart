@@ -30,6 +30,7 @@ class _ModulScreenState extends State<ModulScreen> {
   Widget build(BuildContext context) {
     Modul cModul = widget.currentModul;
     List<Question> questionsToQuery = getQuestionsToQuery(cModul);
+
     return Scaffold(
       backgroundColor: kBackgroundColor,
       body: Padding(
@@ -77,6 +78,7 @@ class _ModulScreenState extends State<ModulScreen> {
                       StartButton(
                         text: "Start",
                         goToScreen: QueryScreen(
+                          questions: getQuestionsToQuery(widget.currentModul),
                           modul: widget.currentModul,
                         ),
                       ),
@@ -115,7 +117,9 @@ class _ModulScreenState extends State<ModulScreen> {
                               physics: const AlwaysScrollableScrollPhysics(),
                               scrollDirection: Axis.horizontal,
                               children: [
-                                for (int i = 0; i < cModul.content.length; i++)
+                                for (int i = 0;
+                                    i < questionsToQuery.length;
+                                    i++)
                                   Padding(
                                     padding: const EdgeInsets.only(
                                         right: kDefaultPadding / 4),
@@ -171,16 +175,16 @@ class _ModulScreenState extends State<ModulScreen> {
                                                 ));
                                       },
                                       child: QuestionCard(
-                                        question: cModul.content[i].question,
+                                        question: questionsToQuery[i].question,
                                         cardScreen: QuestionEditScreen(
                                           modul: cModul,
-                                          question: cModul.content[i],
+                                          question: questionsToQuery[i],
                                           edit: true,
                                         ),
-                                        currentPhase: cModul.content[i].phase,
+                                        currentPhase: questionsToQuery[i].phase,
                                         phaseCount: cModul.phaseCnt,
                                         nextQueryDate:
-                                            cModul.content[i].nextQuery,
+                                            questionsToQuery[i].nextQuery,
                                       ),
                                     ),
                                   ),

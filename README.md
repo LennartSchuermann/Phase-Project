@@ -28,13 +28,13 @@ Author: Lennart S.
 - Start Query :white_check_mark:
 </details>
 
-<details><summary>v0.5: Overhall</summary>
+<details><summary>v0.5: Design & Functionality Overhall</summary>
 
 - Change "All Moduls & Questions" Scrolldirection (to vertical)
 
-- About Screen
+- About/Settings Screen
 
-- Light (KIT) Theme
+- Light Theme
 
 - English support
 </details>

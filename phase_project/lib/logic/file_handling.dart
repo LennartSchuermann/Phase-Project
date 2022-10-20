@@ -37,8 +37,6 @@ Future<Directory> createSaveFile() async {
     await saveFile.create(recursive: true);
   }
 
-  //TODO add template json??
-
   return Directory(saveFile.path);
 }
 

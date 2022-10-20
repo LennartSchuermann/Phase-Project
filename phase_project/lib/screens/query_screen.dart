@@ -171,6 +171,7 @@ class _QueryScreenState extends State<QueryScreen> {
 
                           if (widget.questions.isEmpty) {
                             //query is done
+                            // ignore: use_build_context_synchronously
                             Navigator.push(
                               context,
                               MaterialPageRoute(

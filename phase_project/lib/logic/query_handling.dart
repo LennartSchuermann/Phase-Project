@@ -4,7 +4,7 @@ import 'package:phase_project/classes/question_podo.dart';
 import '../classes/modul_podo.dart';
 
 DateTime getNextQueryDate() {
-  //TODO change duration
+  //TODO change duration (dependent on current phase)
   DateTime newDate = DateTime.now().add(const Duration(days: 1));
   return newDate;
 }

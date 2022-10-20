@@ -19,11 +19,11 @@ Author: Lennart S.
 - Deleting Moduls & Questions (via UI) :white_check_mark:
 </details>
 
-<details><summary>v0.4: Query :warning:</summary>
+<details><summary>v0.4: Query :white_check_mark:</summary>
 
 - Fixing To Query Today :white_check_mark:
 
-- Implementing Phase System :warning:
+- Implementing Phase System :white_check_mark:
 
 - Start Query :white_check_mark:
 </details>

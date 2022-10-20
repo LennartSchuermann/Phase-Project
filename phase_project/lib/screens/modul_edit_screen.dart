@@ -3,7 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:phase_project/design.dart';
-import 'package:phase_project/screens/home_screen.dart';
+import 'package:phase_project/screens/modul_screen.dart';
 
 import '../classes/modul_podo.dart';
 import '../logic/file_handling.dart';
@@ -122,7 +122,11 @@ class _ModulEditScreenState extends State<ModulEditScreen> {
           if (finished) {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const HomeScreen()),
+              MaterialPageRoute(
+                builder: (context) => ModulScreen(
+                  currentModul: widget.modul,
+                ),
+              ),
             );
           }
         },

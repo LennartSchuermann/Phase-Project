@@ -179,7 +179,7 @@ class _QueryScreenState extends State<QueryScreen> {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => const HomeScreen()),
+                                  builder: (context) => HomeScreen()),
                             );
                           } else {
                             nextQuestion(widget.questions.length);

@@ -134,15 +134,5 @@ Future saveData(List<Modul> moduls, Modul modul) async {
   final File saveFile = await getSaveFile();
   saveFile.writeAsStringSync(json.encode(moduls));
 
-  print(modul.toJson());
-}
-
-//Print Content
-void printContent(List<Modul> moduls) {
-  for (Modul modul in moduls) {
-    print(modul.name);
-    for (Question question in modul.content) {
-      print("\t -${question.question}");
-    }
-  }
+  //print(modul.toJson());
 }

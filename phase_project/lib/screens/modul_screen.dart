@@ -44,8 +44,9 @@ class _ModulScreenState extends State<ModulScreen> {
               children: [
                 IconButton(
                   onPressed: () {
-                    Navigator.pop(
+                    Navigator.push(
                       context,
+                      MaterialPageRoute(builder: (context) => HomeScreen()),
                     );
                   },
                   iconSize: kHeaderSize,
@@ -163,7 +164,7 @@ class _ModulScreenState extends State<ModulScreen> {
                                                           context,
                                                           MaterialPageRoute(
                                                             builder: (context) =>
-                                                                const HomeScreen(),
+                                                                HomeScreen(),
                                                           ),
                                                         );
                                                       },
@@ -274,7 +275,7 @@ class _ModulScreenState extends State<ModulScreen> {
                                                 context,
                                                 MaterialPageRoute(
                                                   builder: (context) =>
-                                                      const HomeScreen(),
+                                                      HomeScreen(),
                                                 ),
                                               );
                                             },

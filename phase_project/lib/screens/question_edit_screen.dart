@@ -7,6 +7,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:phase_project/classes/question_podo.dart';
 import 'package:phase_project/screens/home_screen.dart';
+import 'package:phase_project/screens/modul_screen.dart';
 
 import '../classes/modul_podo.dart';
 import '../design.dart';
@@ -207,9 +208,15 @@ class _QuestionEditScreenState extends State<QuestionEditScreen> {
           }
 
           if (finished) {
+            //got to Modul Screen
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const HomeScreen()),
+              MaterialPageRoute(
+                  builder: (context) => HomeScreen(
+                        goToAfterLoading: ModulScreen(
+                          currentModul: widget.modul,
+                        ),
+                      )),
             );
           }
         },

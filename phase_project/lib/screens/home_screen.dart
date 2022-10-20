@@ -11,8 +11,11 @@ import '../classes/modul_podo.dart';
 import '../logic/file_handling.dart';
 import '../logic/query_handling.dart';
 
+// ignore: must_be_immutable
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  HomeScreen({this.goToAfterLoading, super.key});
+
+  Widget? goToAfterLoading;
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -29,6 +32,16 @@ class _HomeScreenState extends State<HomeScreen> {
         if (snapshot.hasData) {
           List<Modul> moduls = getModuls(snapshot.data);
           List<Modul> modulsToQuery = getModulsToQuery(moduls);
+
+          if (widget.goToAfterLoading != null) {
+            Future.microtask(() => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => widget.goToAfterLoading!,
+                  ),
+                ));
+          }
+
           return Scaffold(
             backgroundColor: kBackgroundColor,
             body: Padding(
@@ -134,7 +147,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                             context,
                                                             MaterialPageRoute(
                                                               builder: (context) =>
-                                                                  const HomeScreen(),
+                                                                  HomeScreen(),
                                                             ),
                                                           );
                                                         },
@@ -242,7 +255,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                                       context,
                                                       MaterialPageRoute(
                                                         builder: (context) =>
-                                                            const HomeScreen(),
+                                                            HomeScreen(),
                                                       ),
                                                     );
                                                   },
@@ -317,7 +330,7 @@ class _HomeScreenState extends State<HomeScreen> {
 }
 
 void rebuildAllChildren(BuildContext context) {
-  print("Updating...");
+  print("Rebuilding Children...");
   void rebuild(Element el) {
     el.markNeedsBuild();
     el.visitChildren(rebuild);

@@ -20,6 +20,7 @@ Author: Lennart S.
 </details>
 
 <details><summary>v0.4: Query</summary>
+
 - Fixing To Query Today :white_check_mark:
 
 - Implementing Phase System
@@ -28,9 +29,13 @@ Author: Lennart S.
 </details>
 
 <details><summary>v0.5: Overhall</summary>
+
 - Change "All Moduls & Questions" Scrolldirection (to vertical)
+
 - About Screen
+
 - Light (KIT) Theme
+
 - English support
 </details>
 

@@ -163,8 +163,14 @@ class _ModulScreenState extends State<ModulScreen> {
                                                         Navigator.push(
                                                           context,
                                                           MaterialPageRoute(
-                                                            builder: (context) =>
-                                                                HomeScreen(),
+                                                            builder:
+                                                                (context) =>
+                                                                    HomeScreen(
+                                                              goToAfterLoading:
+                                                                  ModulScreen(
+                                                                      currentModul:
+                                                                          cModul),
+                                                            ),
                                                           ),
                                                         );
                                                       },
@@ -275,7 +281,12 @@ class _ModulScreenState extends State<ModulScreen> {
                                                 context,
                                                 MaterialPageRoute(
                                                   builder: (context) =>
-                                                      HomeScreen(),
+                                                      HomeScreen(
+                                                    goToAfterLoading:
+                                                        ModulScreen(
+                                                            currentModul:
+                                                                cModul),
+                                                  ),
                                                 ),
                                               );
                                             },

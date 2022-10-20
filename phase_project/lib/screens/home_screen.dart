@@ -6,6 +6,7 @@ import 'package:phase_project/design.dart';
 import 'package:phase_project/prefabs.dart';
 import 'package:phase_project/screens/modul_edit_screen.dart';
 import 'package:phase_project/screens/modul_screen.dart';
+import 'package:phase_project/screens/settings_screen.dart';
 
 import '../classes/modul_podo.dart';
 import '../logic/file_handling.dart';
@@ -284,41 +285,82 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-            floatingActionButton: FloatingActionButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => ModulEditScreen(
-                      modul: Modul(
-                        id: 0,
-                        content: List.empty(),
-                        name: "null",
-                        phaseCnt: 0,
-                      ),
-                      edit: false,
+            floatingActionButton: Stack(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.only(left: kDefaultPadding),
+                  child: Align(
+                    alignment: Alignment.bottomLeft,
+                    child: FloatingActionButton(
+                      heroTag: null,
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const SettingsScreen()),
+                        );
+                      },
+                      backgroundColor: kBackgroundColor,
+                      foregroundColor: kFontColor,
+                      child: Stack(children: [
+                        const Center(
+                            child: Icon(CupertinoIcons.settings, size: 30.0)),
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: kFontColor,
+                              width: 1.1,
+                            ),
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(100),
+                            ),
+                          ),
+                        )
+                      ]),
                     ),
                   ),
-                );
-              },
-              backgroundColor: kBackgroundColor,
-              foregroundColor: kFontColor,
-              child: Stack(
-                children: [
-                  const Center(child: Icon(CupertinoIcons.add, size: 30.0)),
-                  Container(
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: kFontColor,
-                        width: 1.1,
-                      ),
-                      borderRadius: const BorderRadius.all(
-                        Radius.circular(100),
-                      ),
+                ),
+                Align(
+                  alignment: Alignment.bottomRight,
+                  child: FloatingActionButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ModulEditScreen(
+                            modul: Modul(
+                              id: 0,
+                              content: List.empty(),
+                              name: "null",
+                              phaseCnt: 0,
+                            ),
+                            edit: false,
+                          ),
+                        ),
+                      );
+                    },
+                    backgroundColor: kBackgroundColor,
+                    foregroundColor: kFontColor,
+                    child: Stack(
+                      children: [
+                        const Center(
+                            child: Icon(CupertinoIcons.add, size: 30.0)),
+                        Container(
+                          decoration: BoxDecoration(
+                            border: Border.all(
+                              color: kFontColor,
+                              width: 1.1,
+                            ),
+                            borderRadius: const BorderRadius.all(
+                              Radius.circular(100),
+                            ),
+                          ),
+                        )
+                      ],
                     ),
-                  )
-                ],
-              ),
+                  ),
+                ),
+              ],
             ),
           );
         } else {

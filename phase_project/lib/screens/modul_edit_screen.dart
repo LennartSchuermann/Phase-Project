@@ -140,20 +140,22 @@ class _ModulEditScreenState extends State<ModulEditScreen> {
         },
         backgroundColor: kBackgroundColor,
         foregroundColor: kFontColor,
-        child: Stack(children: [
-          const Center(child: Icon(CupertinoIcons.check_mark, size: 30.0)),
-          Container(
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: kFontColor,
-                width: 1.1,
+        child: Stack(
+          children: [
+            const Center(child: Icon(CupertinoIcons.check_mark, size: 30.0)),
+            Container(
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: kFontColor,
+                  width: 1.1,
+                ),
+                borderRadius: const BorderRadius.all(
+                  Radius.circular(100),
+                ),
               ),
-              borderRadius: const BorderRadius.all(
-                Radius.circular(100),
-              ),
-            ),
-          )
-        ]),
+            )
+          ],
+        ),
       ),
     );
   }

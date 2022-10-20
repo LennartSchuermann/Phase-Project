@@ -28,7 +28,7 @@ Author: Lennart S.
 - Start Query :white_check_mark:
 </details>
 
-<details><summary>v0.5: Design & Functionality Overhall</summary>
+<details><summary>v0.5: Design & Functionality Overhaul</summary>
 
 - Change "All Moduls & Questions" Scrolldirection (to vertical)
 

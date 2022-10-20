@@ -33,6 +33,7 @@ class _ModulEditScreenState extends State<ModulEditScreen> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            //Titel Row
             Row(
               children: [
                 IconButton(
@@ -63,7 +64,7 @@ class _ModulEditScreenState extends State<ModulEditScreen> {
             TextInputField(
               controller: titleTextController,
               textInputType: TextInputType.text,
-              hintTxt: "Titel (${widget.modul.name})",
+              hintTxt: widget.edit ? "Titel (${widget.modul.name})" : "Titel",
             ),
             const SizedBox(
               height: kDefaultPadding,
@@ -71,7 +72,9 @@ class _ModulEditScreenState extends State<ModulEditScreen> {
             TextInputField(
               controller: phaseTextController,
               textInputType: TextInputType.number,
-              hintTxt: "Anzahl Phasen (${widget.modul.phaseCnt})",
+              hintTxt: widget.edit
+                  ? "Anzahl Phasen (${widget.modul.phaseCnt})"
+                  : "Anzahl Phasen (>0)",
             ),
           ],
         ),

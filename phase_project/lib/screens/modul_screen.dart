@@ -348,18 +348,19 @@ class _ModulScreenState extends State<ModulScreen> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => QuestionEditScreen(
-                            modul: cModul,
-                            question: Question(
-                                id: 0,
-                                question: "null",
-                                answer: "null",
-                                phase: 0,
-                                imgPath: "",
-                                nextQuery:
-                                    DateTime.now()), //TODO Change new question
-                            edit: false,
-                          )),
+                    builder: (context) => QuestionEditScreen(
+                      modul: cModul,
+                      question: Question(
+                        id: 0,
+                        question: "null",
+                        answer: "null",
+                        phase: 0,
+                        imgPath: "",
+                        nextQuery: DateTime.now(),
+                      ),
+                      edit: false,
+                    ),
+                  ),
                 );
               },
               backgroundColor: kBackgroundColor,

@@ -63,8 +63,8 @@ class _QuestionEditScreenState extends State<QuestionEditScreen> {
                 Flexible(
                   child: TitleText(
                     content: widget.edit
-                        ? "Bearbeiten | ${widget.question.question}"
-                        : "Erstellen | Neue Frage",
+                        ? "Bearbeiten | ${widget.modul.name} > ${widget.question.question}"
+                        : "Erstellen | ${widget.modul.name} > Neue Frage",
                   ),
                 )
               ],
@@ -75,7 +75,8 @@ class _QuestionEditScreenState extends State<QuestionEditScreen> {
             TextInputField(
               controller: questionTextController,
               textInputType: TextInputType.text,
-              hintTxt: "Frage (${widget.question.question})",
+              hintTxt:
+                  widget.edit ? "Frage (${widget.question.question})" : "Frage",
             ),
             const SizedBox(
               height: kDefaultPadding,
@@ -83,19 +84,46 @@ class _QuestionEditScreenState extends State<QuestionEditScreen> {
             TextInputField(
               controller: answerTextController,
               textInputType: TextInputType.text,
-              hintTxt: "Antwort (${widget.question.answer})",
+              hintTxt: widget.edit
+                  ? "Antwort (${widget.question.answer})"
+                  : "Antwort",
             ),
             const SizedBox(
               height: kDefaultPadding,
             ),
-            widget.question.imgPath != ""
-                ? Container(
-                    color: kHighlightColor,
-                    width: 500,
-                    height: 320,
-                    child: Image.file(
-                        fit: BoxFit.fill, File(widget.question.imgPath)))
-                : const SizedBox(),
+            FutureBuilder<dynamic>(
+              future: File(widget.question.imgPath).exists(),
+              builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+                if (snapshot.hasData && snapshot.data) {
+                  return (widget.question.imgPath != "")
+                      ? Container(
+                          color: kHighlightColor,
+                          width: 500,
+                          height: 320,
+                          child: Image.file(
+                            fit: BoxFit.fill,
+                            File(widget.question.imgPath),
+                          ),
+                        )
+                      : const SizedBox();
+                } else {
+                  return Row(
+                    children: [
+                      const CircularProgressIndicator(
+                        color: kFontColor,
+                      ),
+                      const SizedBox(
+                        width: kDefaultPadding,
+                      ),
+                      DescriptionText(
+                          content:
+                              "Bild existiert möglicherweise nicht unter: ${widget.question.imgPath}")
+                    ],
+                  );
+                }
+              },
+            ),
+
             const SizedBox(
               height: kDefaultPadding,
             ),
@@ -109,6 +137,10 @@ class _QuestionEditScreenState extends State<QuestionEditScreen> {
 
                 File img = await saveFile(file);
                 imgPath = img.path.toString();
+
+                widget.question.imgPath = imgPath;
+                await editQuestion(widget.modul, widget.question, false);
+                setState(() {});
               },
               child: Container(
                 height: 60,
@@ -130,7 +162,6 @@ class _QuestionEditScreenState extends State<QuestionEditScreen> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          //TODO Save data
           bool finished = false;
 
           if (widget.edit) {

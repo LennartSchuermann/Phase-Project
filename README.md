@@ -23,7 +23,7 @@ Author: Lennart S.
 
 - Fixing To Query Today :white_check_mark:
 
-- Implementing Phase System
+- Implementing Phase System :warning:
 
 - Start Query :white_check_mark:
 </details>

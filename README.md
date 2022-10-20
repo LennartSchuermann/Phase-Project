@@ -4,12 +4,14 @@ Author: Lennart S.
 
 ## Roadmap:
 <details><summary>v0.1 - v0.2: Design :white_check_mark:</summary>
+
 - Design Preview Build :white_check_mark:
 
 - Manual JSON Loading/Editing Build :white_check_mark:
 </details>
 
 <details><summary>v0.3: Functionality :white_check_mark:</summary>
+
 - Adding Moduls & Questions (via UI) :white_check_mark:
 
 - Editing Moduls & Questions (via UI) :white_check_mark:

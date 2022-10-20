@@ -123,7 +123,6 @@ class _QuestionEditScreenState extends State<QuestionEditScreen> {
                 }
               },
             ),
-
             const SizedBox(
               height: kDefaultPadding,
             ),

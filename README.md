@@ -19,7 +19,7 @@ Author: Lennart S.
 - Deleting Moduls & Questions (via UI) :white_check_mark:
 </details>
 
-<details><summary>v0.4: Query</summary>
+<details><summary>v0.4: Query :warning:</summary>
 
 - Fixing To Query Today :white_check_mark:
 

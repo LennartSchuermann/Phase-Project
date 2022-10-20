@@ -3,6 +3,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:phase_project/design.dart';
+import 'package:phase_project/screens/home_screen.dart';
 import 'package:phase_project/screens/modul_screen.dart';
 
 import '../classes/modul_podo.dart';
@@ -120,14 +121,21 @@ class _ModulEditScreenState extends State<ModulEditScreen> {
           }
 
           if (finished) {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => ModulScreen(
-                  currentModul: widget.modul,
+            if (!widget.edit) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => HomeScreen()),
+              );
+            } else {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => ModulScreen(
+                    currentModul: widget.modul,
+                  ),
                 ),
-              ),
-            );
+              );
+            }
           }
         },
         backgroundColor: kBackgroundColor,

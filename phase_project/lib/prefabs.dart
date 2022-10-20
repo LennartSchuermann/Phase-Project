@@ -243,7 +243,7 @@ class QuestionCard extends StatelessWidget {
         width: 310,
         decoration: BoxDecoration(
             border: Border.all(
-              color: kFontColor,
+              color: currentPhase < phaseCount ? kFontColor : kRightColor,
             ),
             borderRadius:
                 const BorderRadius.all(Radius.circular(kDefaultPadding / 2))),
@@ -260,7 +260,9 @@ class QuestionCard extends StatelessWidget {
                 content: "Phase: $currentPhase/$phaseCount",
               ),
               DefaultText(
-                content: "Nächste Abfrage: ${formatedDateTime(nextQueryDate)}",
+                content: currentPhase < phaseCount
+                    ? "Nächste Abfrage: ${formatedDateTime(nextQueryDate)}"
+                    : "Fertig!",
               )
             ],
           ),

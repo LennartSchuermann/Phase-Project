@@ -5,11 +5,13 @@ import 'dart:io';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:phase_project/classes/modul_podo.dart';
+import 'package:phase_project/logic/file_handling.dart';
 import 'package:phase_project/screens/home_screen.dart';
 import 'package:phase_project/screens/question_edit_screen.dart';
 
 import '../classes/question_podo.dart';
 import '../design.dart';
+import '../logic/query_handling.dart';
 import '../prefabs.dart';
 
 class QueryScreen extends StatefulWidget {
@@ -91,7 +93,9 @@ class _QueryScreenState extends State<QueryScreen> {
                   const SizedBox(
                     height: kDefaultPadding,
                   ),
-                  widget.questions[currentQuestionIndex].imgPath != ""
+                  widget.questions[currentQuestionIndex].imgPath != "" &&
+                          File(widget.questions[currentQuestionIndex].imgPath)
+                              .existsSync()
                       ? Container(
                           height: 350,
                           width: 900,
@@ -151,10 +155,19 @@ class _QueryScreenState extends State<QueryScreen> {
                         ),
                       ),
                       GestureDetector(
-                        onTap: () {
+                        onTap: () async {
+                          if (widget.modul.phaseCnt >
+                              widget.questions[currentQuestionIndex].phase) {
+                            widget.questions[currentQuestionIndex].nextQuery =
+                                getNextQueryDate();
+
+                            widget.questions[currentQuestionIndex].phase++;
+                            await editQuestion(widget.modul,
+                                widget.questions[currentQuestionIndex], false);
+                          }
+
                           widget.questions
                               .remove(widget.questions[currentQuestionIndex]);
-                          //TODO increase phase & set date
 
                           if (widget.questions.isEmpty) {
                             //query is done

@@ -193,7 +193,7 @@ class _QuestionEditScreenState extends State<QuestionEditScreen> {
                 question: questionTextController.text,
                 answer: answerTextController.text,
                 imgPath: imgPath,
-                phase: 0,
+                phase: 1,
                 nextQuery: DateTime.now(),
               );
 

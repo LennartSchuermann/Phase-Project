@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 
 const String kAppName = "Phase Project";
 const String kAppCaption = "Working Build | Lennart S. ©";
-const String kAppVersion = "v0.6";
+const String kAppVersion = "v0.5";
 
 const bool usingDarkMode = true;
 const bool usingKITMode = false;

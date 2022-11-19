@@ -2,13 +2,14 @@ import 'package:flutter/cupertino.dart';
 
 const String kAppName = "Phase Project";
 const String kAppCaption = "Working Build | Lennart S. ©";
-const String kAppVersion = "v0.5";
+const String kAppVersion = "v0.6";
 
 const bool usingDarkMode = true;
+const bool usingKITMode = false;
 
 const kFalseColor = Color(0xffE74C3C);
 const kRightColor = Color(0xff0be881);
-const kHighlightColor = usingDarkMode ? Color(0xff006EE6) : Color(0xff309C85);
+const kHighlightColor = usingKITMode ? Color(0xff309C85) : Color(0xff006EE6);
 
 const kBackgroundColor = usingDarkMode ? Color(0xff101010) : Color(0xffFFFFFF);
 const kFontColor =

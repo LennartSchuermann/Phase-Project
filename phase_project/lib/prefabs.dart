@@ -20,7 +20,7 @@ class TitleText extends StatelessWidget {
           color: kFontColor,
           fontFamily: "Inter",
           fontSize: kTitleSize,
-          fontWeight: FontWeight.w300),
+          fontWeight: FontWeight.w400),
     );
   }
 }
@@ -39,7 +39,7 @@ class HeaderText extends StatelessWidget {
           color: kFontColor,
           fontFamily: "Inter",
           fontSize: kHeaderSize,
-          fontWeight: FontWeight.w300),
+          fontWeight: FontWeight.w400),
     );
   }
 }
@@ -58,7 +58,7 @@ class DefaultText extends StatelessWidget {
           color: kFontColor,
           fontFamily: "Inter",
           fontSize: kTextSize,
-          fontWeight: FontWeight.w300),
+          fontWeight: FontWeight.w400),
     );
   }
 }
@@ -77,7 +77,7 @@ class DescriptionText extends StatelessWidget {
           color: kFontColor,
           fontFamily: "Inter",
           fontSize: kDescriptionSize,
-          fontWeight: FontWeight.w200),
+          fontWeight: FontWeight.w400),
     );
   }
 }
@@ -120,14 +120,16 @@ class StartButton extends StatelessWidget {
         height: 60,
         width: 250,
         decoration: BoxDecoration(
-          border: Border.all(),
+          border: Border.all(color: kHighlightColor),
           color: kHighlightColor,
           borderRadius: const BorderRadius.all(
             Radius.circular(kDefaultPadding / 2),
           ),
         ),
         child: Center(
-          child: HeaderText(content: text),
+          child: HeaderText(
+            content: text,
+          ),
         ),
       ),
     );
@@ -312,14 +314,14 @@ class TextInputField extends StatelessWidget {
           color: kFontColor.withOpacity(0.75),
           fontFamily: 'Inter',
           fontSize: kTextSize,
-          fontWeight: FontWeight.w200,
+          fontWeight: FontWeight.w400,
         ),
       ),
       style: TextStyle(
         color: kFontColor,
         fontFamily: 'Inter',
         fontSize: kTextSize,
-        fontWeight: FontWeight.w200,
+        fontWeight: FontWeight.w400,
       ),
     );
   }

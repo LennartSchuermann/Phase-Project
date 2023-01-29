@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
+import 'package:phase_project/main.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 
 import '../design.dart';
 import '../prefabs.dart';
@@ -35,7 +35,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   },
                   iconSize: kHeaderSize,
                   enableFeedback: false,
-                  icon: const Icon(
+                  icon: Icon(
                     CupertinoIcons.chevron_back,
                     color: kFontColor,
                   ),
@@ -49,8 +49,23 @@ class _SettingsScreenState extends State<SettingsScreen> {
               height: kDefaultPadding,
             ),
             Center(
-              child: HeaderText(
-                content: "PISS DICH DU HS!",
+              child: CupertinoSwitch(
+                // overrides the default green color of the track
+                activeColor: kFontColor,
+                // color of the round icon, which moves from right to left
+                thumbColor: kHighlightColor,
+                // when the switch is off
+                trackColor: Colors.black12,
+                // boolean variable value
+                value: usingDarkMode,
+                // changes the state of the switch
+                onChanged: (value) => setState(
+                  () {
+                    usingDarkMode = value;
+                    print(usingDarkMode);
+                    Phoenix.rebirth(context);
+                  },
+                ),
               ),
             )
           ],

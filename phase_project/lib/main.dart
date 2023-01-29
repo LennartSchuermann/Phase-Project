@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_phoenix/flutter_phoenix.dart';
 import 'package:phase_project/design.dart';
 import 'package:phase_project/screens/home_screen.dart';
 
@@ -10,8 +11,8 @@ Future<void> main() async {
 
   await windowManager.ensureInitialized();
 
-  WindowOptions windowOptions = const WindowOptions(
-      size: Size(1280, 832),
+  WindowOptions windowOptions = WindowOptions(
+      size: const Size(1280, 832),
       center: true,
       backgroundColor: kBackgroundColor,
       skipTaskbar: false,
@@ -28,7 +29,7 @@ Future<void> main() async {
 
   await createSaveFile();
 
-  runApp(const MyApp());
+  runApp(Phoenix(child: MyApp()));
 }
 
 class MyApp extends StatelessWidget {

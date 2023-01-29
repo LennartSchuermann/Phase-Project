@@ -45,7 +45,7 @@ class _ModulEditScreenState extends State<ModulEditScreen> {
                   },
                   iconSize: kHeaderSize,
                   enableFeedback: false,
-                  icon: const Icon(
+                  icon: Icon(
                     CupertinoIcons.chevron_back,
                     color: kFontColor,
                   ),

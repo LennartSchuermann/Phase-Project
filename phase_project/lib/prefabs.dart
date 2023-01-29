@@ -16,7 +16,7 @@ class TitleText extends StatelessWidget {
     return Text(
       content,
       overflow: TextOverflow.ellipsis,
-      style: const TextStyle(
+      style: TextStyle(
           color: kFontColor,
           fontFamily: "Inter",
           fontSize: kTitleSize,
@@ -35,7 +35,7 @@ class HeaderText extends StatelessWidget {
     return Text(
       content,
       overflow: TextOverflow.ellipsis,
-      style: const TextStyle(
+      style: TextStyle(
           color: kFontColor,
           fontFamily: "Inter",
           fontSize: kHeaderSize,
@@ -54,7 +54,7 @@ class DefaultText extends StatelessWidget {
     return Text(
       content,
       overflow: TextOverflow.ellipsis,
-      style: const TextStyle(
+      style: TextStyle(
           color: kFontColor,
           fontFamily: "Inter",
           fontSize: kTextSize,
@@ -73,7 +73,7 @@ class DescriptionText extends StatelessWidget {
     return Text(
       content,
       overflow: TextOverflow.ellipsis,
-      style: const TextStyle(
+      style: TextStyle(
           color: kFontColor,
           fontFamily: "Inter",
           fontSize: kDescriptionSize,
@@ -299,7 +299,7 @@ class TextInputField extends StatelessWidget {
         fillColor: kBackgroundColor,
         focusColor: kHighlightColor,
         enabledBorder: OutlineInputBorder(
-          borderSide: const BorderSide(
+          borderSide: BorderSide(
             color: kFontColor,
           ),
           borderRadius: BorderRadius.circular(10.0),
@@ -315,7 +315,7 @@ class TextInputField extends StatelessWidget {
           fontWeight: FontWeight.w200,
         ),
       ),
-      style: const TextStyle(
+      style: TextStyle(
         color: kFontColor,
         fontFamily: 'Inter',
         fontSize: kTextSize,
@@ -341,7 +341,7 @@ class LoadingPage extends StatelessWidget {
             const SizedBox(
               height: kDefaultPadding * 2,
             ),
-            const CircularProgressIndicator(
+            CircularProgressIndicator(
               color: kFontColor,
             ),
             const SizedBox(

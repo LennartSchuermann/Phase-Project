@@ -56,7 +56,7 @@ class _QuestionEditScreenState extends State<QuestionEditScreen> {
                   },
                   iconSize: kHeaderSize,
                   enableFeedback: false,
-                  icon: const Icon(
+                  icon: Icon(
                     CupertinoIcons.chevron_back,
                     color: kFontColor,
                   ),
@@ -111,7 +111,7 @@ class _QuestionEditScreenState extends State<QuestionEditScreen> {
                   return widget.question.imgPath != ""
                       ? Row(
                           children: [
-                            const CircularProgressIndicator(
+                            CircularProgressIndicator(
                               color: kFontColor,
                             ),
                             const SizedBox(

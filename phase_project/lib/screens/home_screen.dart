@@ -87,7 +87,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             ),
                             child: ShaderMask(
                               shaderCallback: (Rect rect) {
-                                return const LinearGradient(
+                                return LinearGradient(
                                   begin: Alignment.centerLeft,
                                   end: Alignment.centerRight,
                                   colors: [
@@ -197,14 +197,14 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       child: ShaderMask(
                         shaderCallback: (Rect rect) {
-                          return const LinearGradient(
+                          return LinearGradient(
                             begin: Alignment.centerLeft,
                             end: Alignment.centerRight,
                             colors: [
                               Colors.transparent,
                               kBackgroundColor,
                             ],
-                            stops: [
+                            stops: const [
                               0.9,
                               1.0
                             ], // 10% purple, 80% transparent, 10% purple

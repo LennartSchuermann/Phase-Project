@@ -61,7 +61,7 @@ class _QueryScreenState extends State<QueryScreen> {
                         },
                         iconSize: kHeaderSize,
                         enableFeedback: false,
-                        icon: const Icon(
+                        icon: Icon(
                           CupertinoIcons.chevron_back,
                           color: kFontColor,
                         ),

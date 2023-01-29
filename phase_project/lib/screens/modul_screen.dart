@@ -51,7 +51,7 @@ class _ModulScreenState extends State<ModulScreen> {
                   },
                   iconSize: kHeaderSize,
                   enableFeedback: false,
-                  icon: const Icon(
+                  icon: Icon(
                     CupertinoIcons.chevron_back,
                     color: kFontColor,
                   ),
@@ -100,7 +100,7 @@ class _ModulScreenState extends State<ModulScreen> {
                           ),
                           child: ShaderMask(
                             shaderCallback: (Rect rect) {
-                              return const LinearGradient(
+                              return LinearGradient(
                                 begin: Alignment.centerLeft,
                                 end: Alignment.centerRight,
                                 colors: [
@@ -223,14 +223,14 @@ class _ModulScreenState extends State<ModulScreen> {
                 ),
                 child: ShaderMask(
                   shaderCallback: (Rect rect) {
-                    return const LinearGradient(
+                    return LinearGradient(
                       begin: Alignment.centerLeft,
                       end: Alignment.centerRight,
                       colors: [
                         Colors.transparent,
                         kBackgroundColor,
                       ],
-                      stops: [
+                      stops: const [
                         0.9,
                         1.0
                       ], // 10% purple, 80% transparent, 10% purple
